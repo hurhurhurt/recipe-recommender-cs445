@@ -1,3 +1,40 @@
 // Place all the styles related to the recipe controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.background_image{
+    background-image: url('landingpage_background.jpg');
+   }
+.tomiddle{
+    text-align: center;
+}
+
+.title{
+    margin-top: 100px;
+    margin-bottom: 30px;
+    font-size: 70px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-weight: bold;
+}
+.givemargin{
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.about_title{
+  text-align: justify;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  padding-right: 200px;
+  padding-left: 200px;
+  font-size: 30px;
+  font-family: "arial";
+  font-weight: bold;
+}
+.about_main{
+  text-align: justify;
+  padding-right: 200px;
+  padding-left: 200px;
+  font-size: 18px;
+  font-family: "arial";
+  border-style: hidden;
+}
