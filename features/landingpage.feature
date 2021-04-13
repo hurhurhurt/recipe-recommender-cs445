@@ -5,7 +5,7 @@ Feature: Landing page of Recipe Recommender
   So that I can access to Recipe Recommender website
   I want to log in to Recipe Recommender website
 
-Background: User sees the welcome message
+Scenario: User sees the welcome message
   When I go to the landing page
   Then I should see "ABOUT US.."
   
