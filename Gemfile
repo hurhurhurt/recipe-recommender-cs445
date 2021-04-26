@@ -17,7 +17,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
+gem 'omniauth-rails_csrf_protection'  # protects against recently discovered vulnerability
+gem 'omniauth'                        # flexible, multi-provider authentication library
+gem 'omniauth-github'                 # omniauth strategy for provider github
+gem 'figaro'                          # keeps our secrets safe
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
