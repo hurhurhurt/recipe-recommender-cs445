@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  get 'recipe/index'
+# config/routes.rb
+
+# ...
+
+  match '/auth/:provider/callback', :to => 'sessions#create', :via => [:get, :post]
+  match 'auth/failure', :to => 'sessions#failure', :via => [:get, :post]
+  get 'sessions/destroy', :as => 'logout'
+  get 'sessions/clear'
+  get 'session/debug'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
