@@ -93,4 +93,24 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  # spec/spec_helper.rb
+
+require 'omniauth'
+
+OmniAuth.config.test_mode = true
+omniauth_hash = { 'provider' => 'github',
+                  'uid' => "123456",
+                  'info' => {
+                      'name' => "SUNY Tester",
+                      'email' =>"stester@binghamton.edu"
+                  }
+}
+ 
+OmniAuth.config.add_mock(:github, omniauth_hash)
+  
+  
+  
+  
+  
+  
 end
