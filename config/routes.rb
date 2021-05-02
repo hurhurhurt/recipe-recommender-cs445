@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
   resources :profiles
-# config/routes.rb
-
-# ...
-
-  
   match '/auth/:provider/callback', :to => 'sessions#create', :via => [:get, :post]
   match 'auth/failure', :to => 'sessions#failure', :via => [:get, :post]
   get 'sessions/destroy', :as => 'logout'
@@ -73,6 +68,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  
+  get 'recipe/index', :as => :landing_page
   root 'recipe#index'
 end

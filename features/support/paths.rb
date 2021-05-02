@@ -14,7 +14,7 @@ module NavigationHelpers
     case page_name
 
     when /^the landing\s?page$/
-      #then '/landing'
+      #landing_page
       
     when /^the RottenPotatoes edit Profile Path for "([^"]*)"$/
       edit_user_profile_path(1, 2)
