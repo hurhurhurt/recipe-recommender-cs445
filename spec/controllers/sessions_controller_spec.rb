@@ -10,7 +10,14 @@ class SessionsController < ApplicationController
  # end
   
   def create 
-     user = User.create!("name" => auth_hash[:info][:name], "email" => auth_hash[:info][:email])
+     user = User.create_with_omniauth(auth_hash['info'])
+     auth = Authorization.create_with_omniauth(auth_hash, @user)
+     session[:user_id] = auth.user.id
+     self.current_user= auth.user
+     @profile = @user.create_profile
+     message = "Welcome #{user.name}! You have signed up via #{auth.provider}."
+     flash[:notice] = message
+     redirect_to edit_user_profile_path(@user,@profile) 
   end
   
   def new

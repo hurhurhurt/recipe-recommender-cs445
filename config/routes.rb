@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
+  resources :profiles
 # config/routes.rb
 
 # ...
 
+  
   match '/auth/:provider/callback', :to => 'sessions#create', :via => [:get, :post]
   match 'auth/failure', :to => 'sessions#failure', :via => [:get, :post]
   get 'sessions/destroy', :as => 'logout'
   get 'sessions/clear'
   get 'session/debug'
+  resources :users, only: [:destroy] do
+    resources :profiles, only: [:show, :edit, :update, :destroy]
+  end
+
 
   # config/routes.rb
 
