@@ -6,6 +6,39 @@ RSpec.describe SessionsController, type: :controller do
 
 end
 class SessionsController < ApplicationController
+  
+  describe "#create" do
+    context "no active session, User and Authorization do not exist" do 
+      context 'register with github' do        
+        before(:each) do
+          session[:user_id] = nil
+          # Database has been cleaned, so shouldn't have to worry about User and Authorization
+        end 
+        describe 'When signing up for first time' do
+          it "creates a User" do
+            post :create, provider: :github
+          end        
+          it "creates an Authorization" do
+            post :create, provider: :github
+          end
+          it "creates a session", :pending => true do 
+          end
+          it "creates a current_user", :pending => true do
+          end
+        end
+        describe 'After successful registration', :pending => true do
+          it "sets a flash message", :pending => true do
+          end 
+          it "creates an empty user profile" do
+          end
+          # Finally, we should test where it's going
+          it "redirects to the edit profile page" do 
+          end
+        end
+      end
+    end
+  end
+
   def start_test
   end
 
@@ -18,67 +51,5 @@ class SessionsController < ApplicationController
   def destroy
   end
 
-  def debug
-    puts '\n raw auth_hash\n'
-    p @auth_hash
-    puts '\n\nauth_hash by key\n'
-    @auth_hash.each_pair do |key, value|
-      puts "\nKEY: #{key}"
-      if value.kind_of?(Hash)
-        nested_hash(value, '')
-      else
-        puts "Value: #{value}"
-      end
-    end
-  end
-
-  def new
-  end
-
-  def nested_hash nh, indent
-    puts indent + "VALUE is a nested hash"
-    indent += '  '
-    nh.each_pair do |key, value|
-      puts indent + "KEY: #{key}"
-      if value.kind_of?(Hash)
-        nested_hash(value, indent)
-      else
-        puts indent + "VALUE:  #{value}"
-      end     
-    end
-  end    
-
-	def create
-    #auth_hash = request.env['omniauth.auth']
-		#user = User.create!("name" => auth_hash[:info][:name], "email" => auth_hash[:info][:email])
-		user = User.create_with_omniauth(auth_hash["info"])
-    auth = Authorization.create_with_omniauth(auth_hash, user)
-		session[:user_id] = auth.user.id
-		self.current_user = auth.user
-		message = "Welcome #{user.name}! You have signed up via #{auth.provider}."
-    flash[:notice] = message
-		#debug
-  end 
-    
-  private
-
-  def auth_hash
-    #ensures that it's only retrieved once per cycle
-    @auth_hash ||= request.env['omniauth.auth']
-  end
   
-  def nested_hash nh, indent
-    puts indent + "VALUE is a nested hash"
-    indent += '  '
-    nh.each_pair do |key, value|
-      puts indent + "KEY: #{key}"
-      if value.kind_of?(Hash)
-        nested_hash(value, indent)
-      else
-        puts indent + "VALUE:  #{value}"
-      end     
-    end
-  end
-
-
 end
