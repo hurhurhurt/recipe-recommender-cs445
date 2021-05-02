@@ -1,7 +1,5 @@
 # app/controllers/sessions_controller_spec.rb
 
-require 'spec/rails_helper'
-
 RSpec.describe SessionsController, type: :controller do
 
 end
