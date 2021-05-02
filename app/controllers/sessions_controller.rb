@@ -23,7 +23,9 @@ class SessionsController < ApplicationController
   end  
   
   def create 
+    reset_session
     begin
+    
     @user = User.create_with_omniauth(auth_hash['info'])
     auth = Authorization.create_with_omniauth(auth_hash, @user)
    # auth = Authorization.find_with_auth_hash(auth_hash)
@@ -33,7 +35,7 @@ class SessionsController < ApplicationController
     @profile = @user.create_profile
     message = "Welcome #{@user.name}! You have signed up via #{auth.provider}."
     flash[:notice] = message
-    flash[:warning] = "#{exception.class}: #{exception.message}" 
+   # flash[:warning] = "#{exception.class}: #{exception.message}" 
     redirect_to edit_user_profile_path(@user,@profile) 
     rescue ActiveRecord::RecordInvalid,  Exception => exception
       redirect_to landing_page_path and return
