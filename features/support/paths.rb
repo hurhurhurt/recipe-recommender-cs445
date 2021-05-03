@@ -14,13 +14,13 @@ module NavigationHelpers
     case page_name
 
     when /^the landing\s?page$/
-      #landing_page
+      landing_page_path
     
-    when /^the RottenPotatoes edit Profile Path for "([^"]*)"$/
+    when /^the Recipe Recommender edit Profile Path for "([^"]*)"$/
       edit_user_profile_path(1, 2)
 
     when /^the Home Page$/
-      movies_path
+      recipes_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

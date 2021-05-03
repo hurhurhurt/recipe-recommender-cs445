@@ -1,7 +1,7 @@
 Feature: Logout
   As a registered member
   So that I can get back to my life
-  I want to logout of the RottenPotatoes application
+  I want to logout of the Recipe Recommender application
 
 Background: authorization and user in database
 
@@ -13,11 +13,11 @@ Background: authorization and user in database
   |name        | email                 |
   |Tester SUNY| stester@binghamton.edu |
   
-  Given I am logged into RottenPotatoes
+  Given I am logged into Recipe Recommender
 
 @omniauth_test4
 Scenario: logout
   When I press "Log Out"
   Then I will see "Tester SUNY has logged out."  
-  And I am on the RottenPotatoes Landing Page
-  And I will see "Welcome to Rotten Potatoes!"
+  And I am on the Landing Page
+  And I will see "About us.."

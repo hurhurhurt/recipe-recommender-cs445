@@ -16,11 +16,11 @@ Then /^I will see "([^"]*)"$/ do |message|
   expect(page.body).to have_content(message)
 end
 
-Given /I am logged into RottenPotatoes/ do
+Given /I am logged into Recipe Recommender/ do
   steps %Q{
-    Given I am on the RottenPotatoes Landing Page   
+    Given I am on the Landing Page   
     And I press "Register or Login with GitHub"
-    And I am on the RottenPotatoes Home Page
+    And I am on the Home Page
     }
 end
 
