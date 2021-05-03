@@ -7,6 +7,6 @@ Feature: Login
 Scenario: login
   Given I am on the landing page
   And I press "Register or Login with GitHub"
-  Then I will see "Welcome back Tester SUNY! You have logged in via github."
-#  And I am on the RottenPotatoes Home Page
-  And I will see "Welcome to the Recipe Recommender System" # This may be different for you
+  #Then I will see "Welcome back Tester SUNY! You have logged in via github."
+  #And I am on the RottenPotatoes Home Page
+  Then I will see "Welcome to the Recipe Recommender System" # This may be different for you
