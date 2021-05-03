@@ -5,7 +5,7 @@ class Authorization < ActiveRecord::Base
   def self.create_with_omniauth(auth, user) 
     user.authorizations.create!( provider: auth['provider'], uid: auth['uid'])
   end
-  
+
   def self.exists?(auth_hash)
     #!!(Authorization.find_by(uid: auth_hash['uid'], provider: auth_hash['provider']))
     !!(Authorization.find_with_auth_hash(auth_hash))

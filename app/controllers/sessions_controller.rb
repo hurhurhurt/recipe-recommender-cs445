@@ -1,5 +1,5 @@
-# app/controllers/sessions_controller_spec.rb
 class SessionsController < ApplicationController
+  skip_before_action :keep_out_unless_logged_in, only: [:create, :clear, :debug]  
   def start_test
   end
 
@@ -23,20 +23,25 @@ class SessionsController < ApplicationController
   end  
   
   def create 
-    reset_session
     begin
-    
-    @user = User.create_with_omniauth(auth_hash['info'])
-    auth = Authorization.create_with_omniauth(auth_hash, @user)
-   # auth = Authorization.find_with_auth_hash(auth_hash)
-   # @user = User.find_with_auth_hash(auth_hash['info'])
-    session[:user_id] = auth.user.id
-    self.current_user= auth.user
-    @profile = @user.create_profile
-    message = "Welcome #{@user.name}! You have signed up via #{auth.provider}."
-    flash[:notice] = message
-   # flash[:warning] = "#{exception.class}: #{exception.message}" 
-    redirect_to edit_user_profile_path(@user,@profile) 
+    if Authorization.exists?(auth_hash)
+      auth = Authorization.find_with_auth_hash(auth_hash)
+      @user = User.find_with_auth_hash(auth_hash['info'])
+      session[:user_id] = auth.user.id
+      self.current_user= auth.user
+      message = "Welcome back #{@user.name}! You have logged in via #{auth.provider}."
+      flash[:notice] = message
+      redirect_to home_path
+    else
+      @user = User.create_with_omniauth(auth_hash['info'])
+      auth = Authorization.create_with_omniauth(auth_hash, @user)
+      session[:user_id] = auth.user.id
+      self.current_user= auth.user
+      @profile = @user.create_profile
+      message = "Welcome #{@user.name}! You have signed up via #{auth.provider}."
+      flash[:notice] = message
+      redirect_to edit_user_profile_path(@user,@profile) 
+    end
     rescue ActiveRecord::RecordInvalid,  Exception => exception
       redirect_to landing_page_path and return
     end

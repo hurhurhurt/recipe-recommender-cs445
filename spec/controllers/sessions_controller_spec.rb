@@ -44,23 +44,23 @@ RSpec.describe SessionsController, type: :controller do
             post :create, provider: :github  
             expect(response).to redirect_to(edit_user_profile_path(user_id: 1, id: id2))       
           end
-=begin
+
           it 'checks to see that a previous authorization does not exist' do
             expect(Authorization).to receive(:exists?).with(OmniAuth.config.mock_auth[:github]).and_return(false)
             post :create, provider: :github
           end  
-=end
+
         end
       end
     end
-=begin
+
     context "no active session, User and Authorization already exist" do
       context "Login with github" do
         before(:each) do
-          session[:user_id] = nil          
+          session[:user_id] = nil  
+          @user = User.create!(name: 'SUNY Tester', email: 'stester@binghamton.edu')
+          @auth = Authorization.create!(provider: "github", uid: "123456", user_id: @user.id)
         end 
-        @user = User.create!(name: 'SUNY Tester', email: 'stester@binghamton.edu')
-        @auth = Authorization.create!(provider: "github", uid: "123456", user_id: @user.id)
         describe 'When logging in a registered user' do
           let(:id1)  {1}
           let(:user_id1) {1}
@@ -87,19 +87,16 @@ RSpec.describe SessionsController, type: :controller do
             post :create, provider: :github
           end
           it 'sets a flash message' do
-            expect(flash[:notice]).to match(/^Welcome back #{user1.name}! You have logged in via #{auth1.provider}.$/)  
             post :create, provider: :github
+            expect(flash[:notice]).to match(/^Welcome back #{user1.name}! You have logged in via #{auth1.provider}.$/)  
           end
           it 'redirects to the home page' do
             post :create, provider: :github
-            #expect(response).to redirect_to(movies_path)  
+            expect(response).to redirect_to(home_path)  
           end
         end
       end
     end 
-  end
-
-=end
   end
   def start_test
   end

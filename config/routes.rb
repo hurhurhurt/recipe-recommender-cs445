@@ -69,5 +69,6 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   get 'recipe/index', :as => :landing_page
+  get 'recipe/home', :as => :home
   root 'recipe#index'
 end
