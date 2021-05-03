@@ -8,21 +8,21 @@ class SessionsController < ApplicationController
     redirect_to landing_page_path
   end
 
-  #def debug
- # end
   
-  def nested_hash nh, indent
-    puts indent + "VALUE is a nested hash"
-    indent += '  '
-    nh.each_pair do |key, value|
-      puts indent + "KEY: #{key}"
+  def debug
+    puts '\n raw auth_hash\n'
+    p @auth_hash
+    puts '\n\nauth_hash by key\n'
+    @auth_hash.each_pair do |key, value|
+      puts "\nKEY: #{key}"
       if value.kind_of?(Hash)
-        nested_hash(value, indent)
+        nested_hash(value, '')
       else
-        puts indent + "VALUE:  #{value}"
-      end     
+        puts "Value: #{value}"
+      end
     end
-  end  
+    redirect_to welcome_index_path
+  end
   
   def create 
     begin
@@ -45,6 +45,7 @@ class SessionsController < ApplicationController
         redirect_to edit_user_profile_path(@user,@profile) 
       end
     rescue ActiveRecord::RecordInvalid,  Exception => exception
+      flash[:warning] = "#{exception.class}: #{exception.message}"
       redirect_to landing_page_path and return
     end
   end
@@ -59,7 +60,29 @@ class SessionsController < ApplicationController
     redirect_to landing_page_path
   end
   
+  def failure
+    begin
+    rescue Exception => exception    
+      flash[:warning] = "#{exception.class}:  #{exception.message}" 
+      redirect_to welcome_index_path
+    end
+  end
+  
   private
+  
+    
+  def nested_hash nh, indent
+    puts indent + "VALUE is a nested hash"
+    indent += '  '
+    nh.each_pair do |key, value|
+      puts indent + "KEY: #{key}"
+      if value.kind_of?(Hash)
+        nested_hash(value, indent)
+      else
+        puts indent + "VALUE:  #{value}"
+      end     
+    end
+  end  
   
   
   def auth_hash
@@ -67,4 +90,5 @@ class SessionsController < ApplicationController
     @auth_hash ||= request.env['omniauth.auth']
   end
 end
+
 
