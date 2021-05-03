@@ -1,6 +1,20 @@
 Rails.application.routes.draw do
-  get 'recipe/index'
+  resources :profiles
+  match '/auth/:provider/callback', :to => 'sessions#create', :via => [:get, :post]
+  match 'auth/failure', :to => 'sessions#failure', :via => [:get, :post]
+  match 'sessions/destroy', :as => 'logout', :via => [:get, :post]
+  get 'sessions/clear'
+  get 'session/debug'
+  resources :users, only: [:destroy] do
+    resources :profiles, only: [:show, :edit, :update, :destroy]
+  end
 
+
+  # config/routes.rb
+
+# ...
+  match 'auth/:provider/callback', :to => 'sessions#create', :via => [:get, :post]
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -55,6 +69,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  
+  get 'recipe/index', :as => :landing_page
+  get 'recipe/home', :as => :home
   root 'recipe#index'
 end

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #Home page of Recipe Recommender
 
 #Feature: home page of Recipe Recommender
@@ -51,3 +52,5 @@
 #Scenario: Empty input
 #When I press "APPLY"
 #Then I should see "ERROR_empty_input"	
+=======
+>>>>>>> 39a664461062c14cb876250d3be31f840b2b36a6

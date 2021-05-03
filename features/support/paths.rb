@@ -14,7 +14,17 @@ module NavigationHelpers
     case page_name
 
     when /^the landing\s?page$/
+<<<<<<< HEAD
       #then '/landing'
+=======
+      #landing_page
+    
+    when /^the RottenPotatoes edit Profile Path for "([^"]*)"$/
+      edit_user_profile_path(1, 2)
+
+    when /^the Home Page$/
+      movies_path
+>>>>>>> 39a664461062c14cb876250d3be31f840b2b36a6
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

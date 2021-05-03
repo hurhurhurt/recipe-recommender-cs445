@@ -8,5 +8,9 @@ Feature: Landing page of Recipe Recommender
 Scenario: User sees the welcome message
   When I go to the landing page
   Then I should see "ABOUT US.."
+<<<<<<< HEAD
   
 
+=======
+  
+>>>>>>> 39a664461062c14cb876250d3be31f840b2b36a6
