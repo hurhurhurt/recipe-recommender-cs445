@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :profiles
   match '/auth/:provider/callback', :to => 'sessions#create', :via => [:get, :post]
   match 'auth/failure', :to => 'sessions#failure', :via => [:get, :post]
-  get 'sessions/destroy', :as => 'logout'
+  match 'sessions/destroy', :as => 'logout', :via => [:get, :post]
   get 'sessions/clear'
   get 'session/debug'
   resources :users, only: [:destroy] do
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
 # ...
   match 'auth/:provider/callback', :to => 'sessions#create', :via => [:get, :post]
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

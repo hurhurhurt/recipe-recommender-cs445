@@ -50,6 +50,16 @@ class SessionsController < ApplicationController
   def new
   end
 
+  def destroy 
+=begin
+    message = "#{self.current_user.name} has logged out."
+    self.current_user = nil
+    session.delete(:user_id)
+    flash[:notice] = message
+=end
+    redirect_to landing_page_path
+  end
+  
   def auth_hash
     #ensures that it's only retrieved once per cycle
     @auth_hash ||= request.env['omniauth.auth']
