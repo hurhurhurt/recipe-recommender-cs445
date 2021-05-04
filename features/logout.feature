@@ -19,5 +19,5 @@ Background: authorization and user in database
 Scenario: logout
   When I press "Log Out"
   Then I will see "Tester SUNY has logged out."  
-  And I am on the Landing Page
-  And I will see "About us.."
+  And I am on the landing page
+  And I will see "ABOUT US.."

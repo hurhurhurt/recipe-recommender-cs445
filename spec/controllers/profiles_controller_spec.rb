@@ -57,13 +57,6 @@ RSpec.describe ProfilesController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "returns a success response" do
-      get :new, {}, valid_session
-      expect(response).to be_success
-    end
-  end
-
   describe "GET #edit" do
     it "returns a success response" do
       profile = Profile.create! valid_attributes
@@ -72,27 +65,7 @@ RSpec.describe ProfilesController, type: :controller do
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Profile" do
-        expect {
-          post :create, {:profile => valid_attributes}, valid_session
-        }.to change(Profile, :count).by(1)
-      end
 
-      it "redirects to the created profile" do
-        post :create, {:profile => valid_attributes}, valid_session
-        expect(response).to redirect_to(Profile.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, {:profile => invalid_attributes}, valid_session
-        expect(response).to be_success
-      end
-    end
-  end
 
   describe "PUT #update" do
     context "with valid params" do

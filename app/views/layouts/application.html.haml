@@ -8,4 +8,8 @@
     = csrf_meta_tags
     
   %body
+    = render "layouts/flash"
     = yield
+    - unless @action=="login"
+      = render "layouts/footer"
+   
