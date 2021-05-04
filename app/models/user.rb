@@ -14,10 +14,13 @@ class User < ActiveRecord::Base
     errors.add(:email, "must be for Binghamton University") if
       email.split('@')[1] != "binghamton.edu"
   end
+  
   def create_profile
     Profile.create(user_id: self.id)
   end
+  
   def self.find_with_auth_hash info
     User.find_by(name: info['name'], email: info['email'])
   end
+  
 end

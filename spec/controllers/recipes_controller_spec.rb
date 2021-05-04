@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe RecipeController, type: :controller do
+RSpec.describe RecipesController, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do
