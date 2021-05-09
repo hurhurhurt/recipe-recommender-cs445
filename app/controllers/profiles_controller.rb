@@ -10,24 +10,8 @@ class ProfilesController < ApplicationController
   def show
   end
 
-  # GET /profiles/new
-  def new
-    @profile = Profile.new
-  end
-
   # GET /profiles/1/edit
   def edit
-  end
-
-  # POST /profiles
-  def create
-    @profile = Profile.new(profile_params)
-
-    if @profile.save
-      redirect_to @profile, notice: 'Profile was successfully created.'
-    else
-      render :new
-    end
   end
 
   # PATCH/PUT /profiles/1
