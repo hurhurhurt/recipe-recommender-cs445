@@ -2,11 +2,14 @@
   %h1.title RECIPE RECOMMENDER
 
   %br
-    %about_us_field
-      %p.about_title ABOUT US..
-      %p.about_main This Recipe Recommender will provide you a list of recipes given ingredients, nutrition, cuisine type, and more! You can click on any recipes you've enjoyed to find any similar ones. We hope that we will help anyone find a solution to the perennial question: "What's for dinner tonight?"
-  -#%br
-    -#=image_submit_tag("tmp.gif", disabled: false)
-    -#%p
-      -#this is test.
+    %filtering_field
+      =text_field_tag 'Food Title', nil ,placeholder: 'Food Title', :class => 'form-control col-lg-2 tomiddle offset-5 giveupdownmargin'
+      =text_field_tag 'Recipe Name', nil ,placeholder: 'Recipe Name', :class => 'form-control col-lg-2 tomiddle offset-5 giveupdownmargin'
+      =text_field_tag 'Cuisine Type', nil ,placeholder: 'Cuisine Type', :class => 'form-control col-lg-2 tomiddle offset-5 giveupdownmargin'
+      =text_field_tag 'Calories', nil ,placeholder: 'Calories', :class => 'form-control col-lg-2 tomiddle offset-5 giveupdownmargin'
+      =text_field_tag 'Cooking Time(min)', nil ,placeholder: 'Cooking Time(min)', :class => 'form-control col-lg-2 tomiddle offset-5 giveupdownmargin'
+      
+      = submit_tag 'APPLY'
+  %br
+
       
