@@ -10,6 +10,10 @@
   %li
     Calories:
     = @recipe.calories
+  %li
+    Cooking Time:
+    = @recipe.cooking_time
+	
 .row
   = link_to 'Edit', edit_recipe_path(@recipe), :class => 'btn btn-primary col-2'
   = link_to 'Delete', recipe_path(@recipe), 'data-method' => 'delete', 'data-confirm' => 'Are you sure?', :class => 'btn btn-danger col-2'

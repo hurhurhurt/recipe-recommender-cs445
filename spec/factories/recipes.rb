@@ -1,5 +1,9 @@
 FactoryGirl.define do
   factory :recipe do
-    name "MyString"
+    recipe_name "MyString"
+    ingredients "MyString"
+    calories "MyString"
+    cuisine_type "MyString"
+    cooking_time "MyString"
   end
 end
