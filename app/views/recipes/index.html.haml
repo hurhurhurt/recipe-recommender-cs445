@@ -1,15 +1,24 @@
-%body.background_image.tomiddle
-  %h1.title RECIPE RECOMMENDER
+%h2 All Recipies
+%table#recipes.table.table-striped.col-md-12
+  %thead
+    %tr
+      %th Recipe Name
+      %th Ingredients
+      %th Cuisine Type
+      %th Calories
+      %th Cooking Time
+  %tbody
+    - @recipes.each do |recipe|
+      %tr
+        %td
+          = recipe.recipe_name
+        %td
+          = recipe.ingredients
+        %td
+          = recipe.cuisine_type
+        %td
+          = recipe.calories
+        %td
+          = recipe.cooking_time
 
-  %br
-    %filtering_field
-      =text_field_tag 'Recipe Name', nil ,placeholder: 'Recipe Name', :class => 'form-control col-lg-2 tomiddle offset-5 giveupdownmargin'
-      =text_field_tag 'Ingredients', nil ,placeholder: 'Ingredients', :class => 'form-control col-lg-2 tomiddle offset-5 giveupdownmargin'
-      =text_field_tag 'Cuisine Type', nil ,placeholder: 'Cuisine Type', :class => 'form-control col-lg-2 tomiddle offset-5 giveupdownmargin'
-      =text_field_tag 'Calories', nil ,placeholder: 'Calories', :class => 'form-control col-lg-2 tomiddle offset-5 giveupdownmargin'
-      =text_field_tag 'Cooking Time(min)', nil ,placeholder: 'Cooking Time(min)', :class => 'form-control col-lg-2 tomiddle offset-5 giveupdownmargin'
-      
-      = submit_tag 'APPLY'
-  %br
-
-      
+-#= link_to 'Add new Recipe' :class => 'btn btn-primary'

@@ -1,0 +1,15 @@
+%body.background_image.tomiddle
+  %h1.title RECIPE RECOMMENDER
+
+  %br
+    %filtering_field
+      =text_field_tag 'Recipe Name', nil ,placeholder: 'Recipe Name', :class => 'form-control col-lg-2 tomiddle offset-5 giveupdownmargin'
+      =text_field_tag 'Ingredients', nil ,placeholder: 'Ingredients', :class => 'form-control col-lg-2 tomiddle offset-5 giveupdownmargin'
+      =text_field_tag 'Cuisine Type', nil ,placeholder: 'Cuisine Type', :class => 'form-control col-lg-2 tomiddle offset-5 giveupdownmargin'
+      =text_field_tag 'Calories', nil ,placeholder: 'Calories', :class => 'form-control col-lg-2 tomiddle offset-5 giveupdownmargin'
+      =text_field_tag 'Cooking Time(min)', nil ,placeholder: 'Cooking Time(min)', :class => 'form-control col-lg-2 tomiddle offset-5 giveupdownmargin'
+      
+      = submit_tag 'APPLY'
+  %br
+
+      
