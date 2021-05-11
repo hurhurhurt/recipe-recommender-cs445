@@ -21,8 +21,8 @@ module NavigationHelpers
     when /^the edit recipe page for "([^"]*)"$/
       edit_recipe_path(1, 2)
      
-    when /^the show recipe page for "([^"]*)"$/
-      show_recipe_path(1, 2)
+    when /^the Recipe Page for "([^"]*)"$/
+      recipe_path(1,2)
 
     when /^the Home Page$/
       recipes_path

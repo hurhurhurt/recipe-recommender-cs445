@@ -17,14 +17,14 @@ Background: recipes in database
   | Onigiri                             | Rice, Nori, Water, Salt, Bonito Flakes, Sesame Seeds                                                                                | Japanese     | 744      | 70           |
 
 
-#@new_recipe
-#Scenario: add recipe
-#  Given I am on the Home Page
-#  When I press "Add new recipe"
-#  And I fill in "Name" with "Test"
-# # And I select "Thai" from "Cuisine Type"
-#  And  I press "Update Recipe Info"
-#  Then the cuisine of "Test" should be "Thai"
+@new_recipe
+Scenario: add recipe
+  Given I am on the Home Page
+  When I press "Add new recipe"
+  And I fill in "Name" with "Test"
+  And I select "Thai" from "Cuisine Type"
+  And  I press "Update Recipe Info"
+  Then the cuisine of "Test" should be "Thai"
 
 @edit_recipe
 Scenario: change cuisine
@@ -35,6 +35,6 @@ Scenario: change cuisine
   
 #@delete_recipe
 #Scenario: delete cuisine
-#  When I go to the show recipe page for "Chicken Katsu"
+#  When I go to the recipe page for "Chicken Katsu"
 #  And  I press "Delete"
 #  Then I should not see "Chicken Katsu"
