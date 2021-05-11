@@ -19,4 +19,4 @@ Scenario: login
   And I press "Register or Login with GitHub"
   Then I will see "Welcome back Tester SUNY! You have logged in via github."
   And I am on the Home Page
-  Then I will see "ABOUT US.." 
+  Then I will see "All Recipes" 
