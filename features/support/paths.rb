@@ -17,6 +17,12 @@ module NavigationHelpers
     
     when /^the Recipe Recommender edit Profile Path for "([^"]*)"$/
       edit_user_profile_path(1, 2)
+      
+    when /^the edit recipe page for "([^"]*)"$/
+      edit_recipe_path(1, 2)
+     
+    when /^the show recipe page for "([^"]*)"$/
+      show_recipe_path(1, 2)
 
     when /^the Home Page$/
       recipes_path

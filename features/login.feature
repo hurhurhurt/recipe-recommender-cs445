@@ -8,10 +8,9 @@ Background: authorization and user in database
     | provider|uid    |user_id|
     | github  |123456 |1      | 
 
-    Given the following users exist:
+  Given the following users exist:
     |name        | email                 |
     |Tester SUNY| stester@binghamton.edu |
-
 
 @omniauth_test3
 Scenario: login
@@ -20,3 +19,4 @@ Scenario: login
   Then I will see "Welcome back Tester SUNY! You have logged in via github."
   And I am on the Home Page
   Then I will see "All Recipes" 
+  

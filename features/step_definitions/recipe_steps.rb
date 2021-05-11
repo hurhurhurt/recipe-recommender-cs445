@@ -20,6 +20,12 @@ Given /the following profiles exist/ do |profiles_table|
   end 
 end
 
+Given /the following recipes exist/ do |recipes_table|
+  recipes_table.hashes.each do |recipe|
+    Recipe.create! recipe
+  end 
+end
+
 Then /^I will see "([^"]*)"$/ do |message|
   puts page.body 
   expect(page.body).to have_content(message)
