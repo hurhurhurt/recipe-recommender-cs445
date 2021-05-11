@@ -21,11 +21,15 @@ module NavigationHelpers
     when /^the edit recipe page for "([^"]*)"$/
       edit_recipe_path(1, 2)
      
-    when /^the Recipe Page for "([^"]*)"$/
-      recipe_path(1,2)
+    when /^the show recipe page for "([^"]*)"$/
+      recipe_path(1)
+      
+    when /^the New Recipe Page$/
+      new_recipe_path
 
     when /^the Home Page$/
       recipes_path
+      
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
