@@ -1,0 +1,16 @@
+%h1
+  %em= @recipe.recipe_name
+%ul#details
+  %li
+    Cuisine Type:
+    = @recipe.cuisine_type
+  %li
+    Ingredients:
+    = @recipe.ingredients
+  %li
+    Calories:
+    = @recipe.calories
+.row
+  = link_to 'Edit', edit_recipe_path(@recipe), :class => 'btn btn-primary col-2'
+  = link_to 'Delete', recipe_path(@recipe), 'data-method' => 'delete', 'data-confirm' => 'Are you sure?', :class => 'btn btn-danger col-2'
+  = link_to 'Back to recipes list', recipes_path, :class => 'btn btn-primary col-2'
