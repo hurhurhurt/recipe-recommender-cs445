@@ -5,15 +5,15 @@
   Include:
   - @all_cuisines.each do |cuisine|
     .form-check.form-check-inline
-      = label_tag "Cuisines[#{cuisine}]", cuisine, class: 'form-check-label'
-      = check_box_tag "Cuisines[#{cuisine}]", "1",  @selected_cuisines.include?(cuisine), class: 'form-check-input', :id=> "cuisines_#{cuisine}"
+      = label_tag "cuisines[#{cuisine}]", cuisine, class: 'form-check-label'
+      = check_box_tag "cuisines[#{cuisine}]", "1",  @selected_cuisines.include?(cuisine), class: 'form-check-input', :id=> "cuisines_#{cuisine}"
   = submit_tag 'Refresh', id: 'cuisines_submit', class: 'btn btn-primary'
 
 %table#recipes.table.table-striped.col-md-12
   %thead
     %tr
       %th 
-        =link_to "Recipe Name", recipes_path(sorting: :recipe_name, :cuisines=>@selected_cuisines_hash),id: :calories_header
+        =link_to "Recipe Name", recipes_path(sorting: :recipe_name, :cuisines=>@selected_cuisines_hash),id: :reicpes_header
       %th Ingredients
       %th Cuisine Type
       %th 

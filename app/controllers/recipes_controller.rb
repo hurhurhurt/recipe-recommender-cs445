@@ -7,6 +7,7 @@ class RecipesController < ApplicationController
   end
 
   def index
+
     update_session_hash
     render_redirect
     #determine_highlighting
@@ -17,7 +18,7 @@ class RecipesController < ApplicationController
     @selected_cuisines = selected_cuisines
     @sorting = session[:sorting] #params[:sorting] || "id"
     @recipes = Recipe.filter_and_sort(@selected_cuisines,@sorting)
-    
+
   end
 
   def new
@@ -72,7 +73,7 @@ class RecipesController < ApplicationController
   def render_redirect
     return unless (session[:cuisines] and params[:cuisines].nil? ) or
                   (session[:sorting] and params[:sorting].nil? )
-    redirect_to recipes_path(:cuisines => session[:cuisines], :sorting => session[:sorting]) and return 
+    redirect_to recipes_path(:sorting => session[:sorting] , :cuisines => session[:cuisines]) and return 
   end
   
 	def get_recipe
