@@ -7,7 +7,17 @@ class RecipesController < ApplicationController
   end
 
   def index
-    @recipes = Recipe.all
+    update_session_hash
+    render_redirect
+    #determine_highlighting
+    
+    #@recipes = Recipe.all
+    @all_cuisines = Recipe.all_cuisines
+    @selected_cuisines_hash = session[:cuisines] #params[:ratings] || select_all_hash
+    @selected_cuisines = selected_cuisines
+    @sorting = session[:sorting] #params[:sorting] || "id"
+    @recipes = Recipe.filter_and_sort(@selected_cuisines,@sorting)
+    
   end
 
   def new
@@ -46,6 +56,25 @@ class RecipesController < ApplicationController
     params.require(:recipe).permit(:recipe_name, :ingredients, :cuisine_type, :calories, :cooking_time)
   end
 
+  def selected_cuisines
+    @selected_cuisines_hash.keys
+  end
+  
+  def select_all_hash
+    Hash[ Recipe.all_cuisines.map { |cuisine_type| [ cuisine , "1" ] } ]
+  end
+  
+  def update_session_hash
+    session[:cuisines] = params[:cuisines] || session[:cuisines] || select_all_hash
+    session[:sorting] = params[:sorting] || session[:sorting] || "id"
+  end
+  
+  def render_redirect
+    return unless (session[:cuisines] and params[:cuisines].nil? ) or
+                  (session[:sorting] and params[:sorting].nil? )
+    redirect_to recipes_path(:cuisines => session[:cuisines], :sorting => session[:sorting]) and return 
+  end
+  
 	def get_recipe
 		@recipe = Recipe.find params[:id]
 	end
