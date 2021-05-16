@@ -8,9 +8,9 @@ RSpec.describe RecipesController, type: :controller do
   end
 
   describe '#index' do  #there would be quite a few tests here!
-    let(:recipe1) {instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', cuisine_type: 'Japanese', cooking_time: '20')}
-    let(:recipe2) {instance_double('Recipe', recipe_name: 'Mongolian Chicken', ingredients: 'Chicken Breast, Cornstarch, Vegetable Oil, Garlic, Ginger, Sriracha, Sesame Oil, Rice Vinegar, Brown Sugar, Soy Sauce, Green Onions', calories: '327', cuisine_type: 'Chinese', cooking_time: '30')}
-    let(:recipe3) {instance_double('Recipe', recipe_name: 'Shrimp Red Thai Curry', ingredients: 'Coconut Milk, Red Thai Curry Paste, Fish Sauce, Chili Pepper, Shrimp', calories: '442', cuisine_type: 'Thai', cooking_time: '40')}
+    let(:recipe1) {instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: 297, cuisine_type: 'Japanese', cooking_time: 20)}
+    let(:recipe2) {instance_double('Recipe', recipe_name: 'Mongolian Chicken', ingredients: 'Chicken Breast, Cornstarch, Vegetable Oil, Garlic, Ginger, Sriracha, Sesame Oil, Rice Vinegar, Brown Sugar, Soy Sauce, Green Onions', calories: 327, cuisine_type: 'Chinese', cooking_time: 30)}
+    let(:recipe3) {instance_double('Recipe', recipe_name: 'Shrimp Red Thai Curry', ingredients: 'Coconut Milk, Red Thai Curry Paste, Fish Sauce, Chili Pepper, Shrimp', calories: 442, cuisine_type: 'Thai', cooking_time: 40)}
     let(:recipes) { [recipe1, recipe2, recipe3] }
 		it 'Retrieves all the recipes' do
       allow(Recipe).to receive(:all).and_return(recipes)
@@ -68,7 +68,7 @@ RSpec.describe RecipesController, type: :controller do
       expect(assigns(:recipe)).to eq(recipe)
     end
   end
-
+=begin
   describe '#edit' do
 		let(:id1) {'1'}
 		let(:recipe) {instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', cuisine_type: 'Japanese', cooking_time: '20')}
@@ -143,5 +143,5 @@ RSpec.describe RecipesController, type: :controller do
 				expect(response).to redirect_to(recipes_path)
 			end
 	end
-
+=end
 end
