@@ -54,35 +54,35 @@ RSpec.describe RecipesController, type: :controller do
 		let(:params) { {recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', cuisine_type: 'Japanese', cooking_time: '20'} }
     let(:recipe) { instance_double('Recipe', params)}
 		it 'Retrieves the recipe' do
-      expect(controller).to receive(:get_recipe).and_return(recipe)
+      expect(controller).to receive(:show).and_return(recipe)
       get :show, id: id1
     end
     it 'selects the show template for rendering' do
-      allow(controller).to receive(:get_recipe).and_return(recipe)
+      allow(controller).to receive(:show).and_return(recipe)
       get :show, id: id1 
       expect(response).to render_template('show') 
     end
     it 'makes the recipe available to the template' do
-      allow(controller).to receive(:get_recipe).and_return(recipe)
-      get :show, id: id1 
+      allow(controller).to receive(:show).and_return(recipe)
+      get :show, id: id1
       expect(assigns(:recipe)).to eq(recipe)
     end
   end
-=begin
+
   describe '#edit' do
 		let(:id1) {'1'}
 		let(:recipe) {instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', cuisine_type: 'Japanese', cooking_time: '20')}
 		it 'Retrieves the recipe' do
-      expect(controller).to receive(:get_recipe).and_return(recipe)
+      expect(controller).to receive(:edit).and_return(recipe)
       get :edit, id: id1 
     end
     it 'selects the edit template for rendering' do
-      allow(controller).to receive(:get_recipe).and_return(recipe)
+      allow(controller).to receive(:edit).and_return(recipe)
       get :edit, id: id1 
       expect(response).to render_template('edit') 
     end
     it 'makes the recipe available to the template' do
-      allow(controller).to receive(:get_recipe).and_return(recipe)
+      allow(controller).to receive(:edit).and_return(recipe)
       get :edit, id: id1 
       expect(assigns(:recipe)).to eq(recipe)
     end
@@ -90,58 +90,58 @@ RSpec.describe RecipesController, type: :controller do
 
   describe '#update' do
     let(:id1) {'1'}
-    let(:params) { {:title => 'Alien'} }
-    let(:movie) { instance_double('Movie', title: 'Something Else') }
-    let(:updated){ instance_double('Movie', title: 'Alien') }
-    it 'Retrieves the movie' do
-      expect(controller).to receive(:get_movie).and_return(movie)
-      allow(movie).to receive(:update_attributes!).with(params)
-      put :update, id: id1, movie: params
+    let(:params) { {:recipe_name => 'Alien'} }
+    let(:recipe) { instance_double('Recipe', title: 'Something Else') }
+    let(:updated){ instance_double('Recipe', title: 'Alien') }
+    it 'Retrieves the recipe' do
+      expect(controller).to receive(:get_recipe).and_return(recipe)
+      allow(recipe).to receive(:update).with(params)
+      put :update, id: id1, recipe: params
     end
-    it 'Updates the movie attributes' do
-      allow(controller).to receive(:get_movie).and_return(movie)
-      expect(movie).to receive(:update_attributes!).with(params).and_return(updated)
-      put :update, id: id1, movie: params
+    it 'Updates the recipe attributes' do
+      allow(controller).to receive(:get_recipe).and_return(recipe)
+      expect(recipe).to receive(:update).with(params).and_return(updated)
+      put :update, id: id1, recipe: params
     end
     it 'Sets a flash message' do
-      allow(controller).to receive(:get_movie).and_return(movie)
-      allow(movie).to receive(:update_attributes!).with(params).and_return(updated)
-      put :update, id: id1, movie: params
+      allow(controller).to receive(:get_recipe).and_return(recipe)
+      allow(recipe).to receive(:update).with(params).and_return(updated)
+      put :update, id: id1, recipe: params
       expect(flash[:notice]).to match(/^.* was successfully updated.$/)  
     end
-    it 'Redirects to the movies page' do
-      allow(controller).to receive(:get_movie).and_return(movie)
-      allow(movie).to receive(:update_attributes!).with(params).and_return(updated)
-      put :update, id: id1, movie: params
-      expect(response).to redirect_to(movie_path(movie))
+    it 'Redirects to the recipes page' do
+      allow(controller).to receive(:get_recipe).and_return(recipe)
+      allow(recipe).to receive(:update).with(params).and_return(updated)
+      put :update, id: id1, recipe: params
+      expect(response).to redirect_to(recipe_path(recipe))
     end
   end
 	
 	describe '#destroy' do
 			let(:id1) {'1'}
-			let(:movie) {instance_double('Movie', title: 'Star Wars')}
-			it 'Retrieves the movie' do
-				expect(controller).to receive(:get_movie).and_return(movie)
-				allow(movie).to receive(:destroy)
+			let(:recipe) {instance_double('Recipe', title: 'Star Wars')}
+			it 'Retrieves the recipe' do
+				expect(controller).to receive(:get_recipe).and_return(recipe)
+				allow(recipe).to receive(:destroy)
 				delete :destroy, :id => id1
 			end    
-			it 'Calls the destroy method to delete the movie' do
-				allow(controller).to receive(:get_movie).and_return(movie)
-				expect(movie).to receive(:destroy)
+			it 'Calls the destroy method to delete the recipe' do
+				allow(controller).to receive(:get_recipe).and_return(recipe)
+				expect(recipe).to receive(:destroy)
 				delete :destroy, :id => id1
 			end
 			it 'Sets the flash message' do
-				allow(controller).to receive(:get_movie).and_return(movie)
-				allow(movie).to receive(:destroy)
+				allow(controller).to receive(:get_recipe).and_return(recipe)
+				allow(recipe).to receive(:destroy)
 				delete :destroy, :id => id1
-				expect(flash[:notice]).to match(/^Movie \'[^']*\' deleted.$/)  
+				expect(flash[:notice]).to match(/^Recipe \'[^']*\' deleted.$/)  
 			end
-			it 'Redirects to the movies page' do
-				allow(controller).to receive(:get_movie).and_return(movie)
-				allow(movie).to receive(:destroy)
+			it 'Redirects to the recipes page' do
+				allow(controller).to receive(:get_recipe).and_return(recipe)
+				allow(recipe).to receive(:destroy)
 				delete :destroy, :id => id1
-				expect(response).to redirect_to(movies_path)
+				expect(response).to redirect_to(recipes_path)
 			end
 	end
-=end
+
 end
