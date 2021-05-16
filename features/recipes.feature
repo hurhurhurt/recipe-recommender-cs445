@@ -41,3 +41,24 @@ Scenario: delete cuisine
   And  I follow "Delete"
   And I go to the New Recipe Page
   Then I should not see "Chicken Katsu"
+  
+@test_sort_name
+Scenario: Sorting by Name
+  Given I am on the Home Page
+  When I follow "Recipe Name"
+  Then I should see "Chicken Katsu" before "Easy Homemade Pad Thai" 
+  
+@test_sort_calories
+Scenario: Sorting by Calories
+  Given I am on the Home Page
+  When I follow "Calories"
+  Then I should see "Japanese Restaurant Cucumber Salad" before "Easy Homemade Pad Thai"
+
+@test_sort_cooking_time
+Scenario: Sorting by Cooking Time
+  Given I am on the Home Page
+  When I follow "Cooking Time"
+  Then I should see "Easy Homemade Pad Thai" before "Chicken Katsu"
+  
+  
+  

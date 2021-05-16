@@ -38,3 +38,11 @@ Given /I am logged into Recipe Recommender/ do
     And I am on the Home Page
     }
 end
+
+Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
+  #  ensure that that e1 occurs before e2.
+  #  page.body is the entire content of the page as a string.
+  if not /#{e1}.*#{e2}.*/m.match(page.body)
+    flunk e1 + " and " + e2 + " are in the wrong position"
+  end
+end
