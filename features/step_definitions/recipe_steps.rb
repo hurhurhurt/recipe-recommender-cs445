@@ -46,3 +46,14 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
     flunk e1 + " and " + e2 + " are in the wrong position"
   end
 end
+
+When /I (un)?check the following cuisines: (.*)/ do |uncheck, cuisine_list|
+  # HINT: use String#split to split up the rating_list, then
+  #   iterate over the ratings and reuse the "When I check..." or
+  #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
+  cuisine_list_split = cuisine_list.split()
+  cuisine_list_split.each do |cuisine_type|
+	step %Q{I #{uncheck}check "cuisines[#{cuisine_type}]"}
+  end
+  #fail "Unimplemented"
+end

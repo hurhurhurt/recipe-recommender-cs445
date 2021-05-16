@@ -60,5 +60,14 @@ Scenario: Sorting by Cooking Time
   When I follow "Cooking Time"
   Then I should see "Easy Homemade Pad Thai" before "Chicken Katsu"
   
+@test_select_cuisine
+Scenario: Selecting by Cuisine
+  Given I am on the Home Page
+  And I check the following cuisines: Japanese
+  And I uncheck the following cuisines: Chinese Thai
+  When I press "Refresh"
+  Then I should see "Japanese Restaurant Cucumber Salad"
+  Then I should not see "Mongolian Chicken"
+  
   
   
