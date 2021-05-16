@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe RecipesController, type: :controller do
+	before(:each) do
+		session[:user_id] = nil  
+		@user = User.create!(name: 'SUNY Tester', email: 'stester@binghamton.edu')
+		@auth = Authorization.create!(provider: "github", uid: "123456", user_id: @user.id)
+  end
 
   describe '#index' do  #there would be quite a few tests here!
     let(:recipe1) {instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', cuisine_type: 'Japanese', cooking_time: '20')}
@@ -42,13 +47,15 @@ RSpec.describe RecipesController, type: :controller do
   end
 
   describe '#show' do
-		let(:id1) {'1'}
-		let(:user) {double('User', name: 'SUNY Tester', email: 'stester@binghamton.edu', id: id1)}
-		let(:auth) {double('Authorization', provider: "github", uid: "123456", user_id: id1, user: user)}
-		let(:recipe) {instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', cuisine_type: 'Japanese', cooking_time: '20')}
+		let(:id1)  {1}
+		let(:user_id1) {1}
+		let(:auth1) {@auth}
+		let(:user1) {@user}
+		let(:params) { {recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', cuisine_type: 'Japanese', cooking_time: '20'} }
+    let(:recipe) { instance_double('Recipe', params)}
 		it 'Retrieves the recipe' do
       expect(controller).to receive(:get_recipe).and_return(recipe)
-      get :show, id: id1 
+      get :show, id: id1
     end
     it 'selects the show template for rendering' do
       allow(controller).to receive(:get_recipe).and_return(recipe)
@@ -61,11 +68,9 @@ RSpec.describe RecipesController, type: :controller do
       expect(assigns(:recipe)).to eq(recipe)
     end
   end
-
+=begin
   describe '#edit' do
 		let(:id1) {'1'}
-		let(:user) {double('User', name: 'SUNY Tester', email: 'stester@binghamton.edu', id: id1)}
-		let(:auth) {double('Authorization', provider: "github", uid: "123456", user_id: id1, user: user)}
 		let(:recipe) {instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', cuisine_type: 'Japanese', cooking_time: '20')}
 		it 'Retrieves the recipe' do
       expect(controller).to receive(:get_recipe).and_return(recipe)
@@ -82,7 +87,7 @@ RSpec.describe RecipesController, type: :controller do
       expect(assigns(:recipe)).to eq(recipe)
     end
   end
-=begin
+
   describe '#update' do
     let(:id1) {'1'}
     let(:params) { {:title => 'Alien'} }

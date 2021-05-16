@@ -8,4 +8,5 @@ class Recipe < ActiveRecord::Base
 	def self.all_cuisine_types
     %w(Japanese Chinese Thai)
   end
+	
 end
