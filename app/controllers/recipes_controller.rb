@@ -61,7 +61,7 @@ class RecipesController < ApplicationController
   end
   
   def select_all_hash
-    Hash[ Recipe.all_cuisines.map { |cuisine_type| [ cuisine , "1" ] } ]
+    Hash[ Recipe.all_cuisines.map { |cuisine_type| [ cuisine_type , "1" ] } ]
   end
   
   def update_session_hash
