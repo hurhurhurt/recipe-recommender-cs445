@@ -1,9 +1,11 @@
 class RecipesController < ApplicationController
    
   def show
-    id = params[:id] # retrieve movie ID from URI route
-    @recipe = Recipe.find(id) # look up movie by unique ID
+    #id = params[:id] 
+    #@recipe = Recipe.find(id) 
     # will render app/views/movies/show.<extension> by default
+    @recipe = set_recipe
+    
   end
 
   def index
@@ -32,18 +34,18 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find params[:id]
+    @recipe = set_recipe 
   end
 
   def update
-    @recipe = Recipe.find params[:id]
+    @recipe = set_recipe
     @recipe.update_attributes!(recipe_params)
     flash[:notice] = "#{@recipe.recipe_name} was successfully updated."
     redirect_to recipe_path(@recipe)
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
+    @recipe = set_recipe
     @recipe.destroy
     flash[:notice] = "Recipe '#{@recipe.recipe_name}' deleted."
     redirect_to recipes_path
@@ -54,7 +56,7 @@ class RecipesController < ApplicationController
   # Making "internal" methods private is not required, but is a common practice.
   # This helps make clear which methods respond to requests, and which ones do not.
   def recipe_params
-    params.require(:recipe).permit(:recipe_name, :ingredients, :cuisine_type, :calories, :cooking_time)
+    params.require(:recipe).permit(:recipe_name, :ingredients, :calories, :cuisine_type, :cooking_time)
   end
 
   def selected_cuisines
@@ -76,7 +78,7 @@ class RecipesController < ApplicationController
     redirect_to recipes_path(:sorting => session[:sorting] , :cuisines => session[:cuisines]) and return 
   end
   
-	def get_recipe
+	def set_recipe
 		@recipe = Recipe.find params[:id]
 	end
 end
