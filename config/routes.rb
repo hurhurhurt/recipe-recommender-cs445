@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :recipes
 
+  #use_doorkeeper
+  
   match '/auth/:provider/callback', :to => 'sessions#create', :via => [:get, :post]
   match 'auth/failure', :to => 'sessions#failure', :via => [:get, :post]
   match 'sessions/destroy', :as => 'logout', :via => [:get, :post]

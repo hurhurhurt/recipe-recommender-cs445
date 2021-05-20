@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.6.6'
 
+gem 'doorkeeper'
 # Other gems here . . .
 #Use Haml as the templating library
 gem 'haml'

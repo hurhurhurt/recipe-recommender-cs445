@@ -16,8 +16,17 @@ Background: recipes in database
   | Japanese Restaurant Cucumber Salad  | Sugar, Rice Vinegar, Sesame Oil, Chili Paste, Cucumber                                                                              | Japanese     | 55       | 45           |
   | Onigiri                             | Rice, Nori, Water, Salt, Bonito Flakes, Sesame Seeds                                                                                | Japanese     | 744      | 70           |
 
-
-@new_recipe
+  Given the following authorizations exist:
+  | provider|uid    |user_id|
+  | github  |123456 |1      | 
+  
+  Given the following users exist:
+  |name        | email                 |
+  |Tester SUNY| stester@binghamton.edu |
+  
+  Given I am logged into Recipe Recommender
+  
+@omniauth_test5
 Scenario: add recipe
   Given I am on the New Recipe Page
   And I fill in "Name" with "Test"
@@ -28,39 +37,39 @@ Scenario: add recipe
   And  I press "Save Changes"
   Then the cuisine of "Test" should be "Thai"
 
-@edit_recipe
+@omniauth_test5
 Scenario: change cuisine
   When I go to the edit recipe page for "Chicken Katsu"
   And  I select "Chinese" from "Cuisine Type"
   And  I press "Update Recipe Info"
   Then the cuisine of "Chicken Katsu" should be "Chinese"
   
-@delete_recipe
+@omniauth_test5
 Scenario: delete cuisine
   Given I am on the show recipe page for "Chicken Katsu"
   And  I follow "Delete"
   And I go to the New Recipe Page
   Then I should not see "Chicken Katsu"
   
-@test_sort_name
+@omniauth_test5
 Scenario: Sorting by Name
   Given I am on the Home Page
   When I follow "Recipe Name"
   Then I should see "Chicken Katsu" before "Easy Homemade Pad Thai" 
   
-@test_sort_calories
+@omniauth_test5
 Scenario: Sorting by Calories
   Given I am on the Home Page
   When I follow "Calories"
   Then I should see "Japanese Restaurant Cucumber Salad" before "Easy Homemade Pad Thai"
 
-@test_sort_cooking_time
+@omniauth_test5
 Scenario: Sorting by Cooking Time
   Given I am on the Home Page
   When I follow "Cooking Time"
   Then I should see "Easy Homemade Pad Thai" before "Chicken Katsu"
   
-@test_select_cuisine
+@omniauth_test5
 Scenario: Selecting by Cuisine
   Given I am on the Home Page
   And I check the following cuisines: Japanese

@@ -19,4 +19,3 @@ Scenario: login
   Then I will see "Welcome back Tester SUNY! You have logged in via github."
   And I am on the Home Page
   Then I will see "All Recipes" 
-  
