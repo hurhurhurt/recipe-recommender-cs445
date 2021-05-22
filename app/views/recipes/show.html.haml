@@ -13,6 +13,9 @@
   %li
     Cooking Time:
     = @recipe.cooking_time
+  %li
+    Related Recipies:
+    = link_to 'temp', recipe_path(@recipe)
 	
 .row
   = link_to 'Edit', edit_recipe_path(@recipe), :class => 'btn btn-primary col-2 givemargin givedownmargin'
