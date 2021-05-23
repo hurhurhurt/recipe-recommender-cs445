@@ -92,7 +92,6 @@ class RecipesController < ApplicationController
     s1_token = ingredients1.downcase!.split(',').to_set
     s2_token = ingredients2.downcase!.split(',').to_set
     combined_vect = s1_token | s2_token
-
     
     for word in combined_vect do
       if s1_token.include? word
@@ -113,5 +112,15 @@ class RecipesController < ApplicationController
         
     cosine = c / ((tf_vector1.sum * tf_vector2.sum)**0.5).to_f
   end    
-   
+  
+  def find_closest_recipe recipe 
+    list_recipes = all_recipes #need to define all_recipes function that gets list of all recipes
+    sim = 0
+    highest = recipe
+    for r in list_recipes do
+      if similar_recipes(recipe.Ingredients, r.Ingredients) > sim and recipe != r
+        sim = similar_recipes(recipe.Ingredients, r.Ingredients)
+        highest = r
+      end
+    end
 end
