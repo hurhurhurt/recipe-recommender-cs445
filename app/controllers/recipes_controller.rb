@@ -85,15 +85,12 @@ class RecipesController < ApplicationController
 	end
   
   def similar_recipes ingredients1, ingredients2
-=begin
 
-This function defines the cosine similarity between two lists of ingredients
-Example input: similar_recipes "Chicken Breast, Salt" "Chicken Breast, Oil"Example
-Example output: 0.5 
+    # This function defines the cosine similarity between two lists of ingredients
+    # Example input: similar_recipes "Chicken Breast, Salt" "Chicken Breast, Oil"Example
+    # Example output: 0.5 
+    # The higher the cosine similarity, the more closely two lists of ingredients are related
 
-The higher the cosine similarity, the more closely two lists of ingredients are related
-
-=end
     tf_vector1 = Array.new()
     tf_vector2 = Array.new()
 
@@ -120,15 +117,14 @@ The higher the cosine similarity, the more closely two lists of ingredients are 
     end
         
     cosine = c / ((tf_vector1.sum * tf_vector2.sum)**0.5).to_f
+    return cosine
   end    
   
-  def find_closest_recipe recipe 
-=begin
+  def find_closest_recipe recipe
+    
+    #This function finds the closest recipe in terms of ingredients to the current one
+    #It iterates through our list of recipes and uses similar_recipes() to find the closest match
 
-This function finds the closest recipe in terms of ingredients to the current one
-It iterates through our list of recipes and uses similar_recipes() to find the closest match
-
-=end
     list_recipes = all_recipes #need to define all_recipes function that gets list of all recipes
     sim = 0
     highest = recipe
@@ -138,4 +134,5 @@ It iterates through our list of recipes and uses similar_recipes() to find the c
         highest = r
       end
     end
+    return highest
 end
