@@ -1,3 +1,5 @@
+require 'set'
+require 'string/similarity'
 class RecipesController < ApplicationController
    
   def show
@@ -81,4 +83,34 @@ class RecipesController < ApplicationController
 	def set_recipe
 		@recipe = Recipe.find params[:id]
 	end
+  
+  def similar_recipes ingredients1, ingredients2
+    
+    tf_vector1 = Array.new()
+    tf_vector2 = Array.new()
+
+    s1_token = ingredients1.split(',').to_set
+    s2_token = ingredients2.split(',').to_set
+    combined_vect = s1_token | s2_token
+
+    
+    for word in combined_vect do
+      if s1_token.include? word
+        tf_vector1.append(1)
+      else
+        tf_vector1.append(0)
+      end
+      if s2_token.include? word
+        tf_vector2.append(1)
+      else
+        tf_vector2.append(0)
+      end
+    end
+    c = 0
+    combined_vect.each_with_index do |value, index|
+      c += tf_vector1[index] * tf_vector2[index]  
+    end
+        
+    cosine = c / ((tf_vector1.sum * tf_vector2.sum)**0.5).to_f
+  end    
 end

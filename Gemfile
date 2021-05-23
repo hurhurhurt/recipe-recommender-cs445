@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.6.6'
-
+gem 'string-similarity'
 gem 'doorkeeper'
 # Other gems here . . .
 #Use Haml as the templating library
