@@ -7,7 +7,7 @@ class RecipesController < ApplicationController
     #@recipe = Recipe.find(id) 
     # will render app/views/movies/show.<extension> by default
     @recipe = set_recipe
-    
+    @close_recipe = find_closest_recipe @recipe
   end
 
   def index
@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
     render_redirect
     #determine_highlighting
     
-    #@recipes = Recipe.all
+    #@recipes = cccc
     @all_cuisines = Recipe.all_cuisines
     @selected_cuisines_hash = session[:cuisines] #params[:ratings] || select_all_hash
     @selected_cuisines = selected_cuisines
@@ -94,8 +94,8 @@ class RecipesController < ApplicationController
     tf_vector1 = Array.new()
     tf_vector2 = Array.new()
 
-    s1_token = ingredients1.downcase!.split(',').to_set
-    s2_token = ingredients2.downcase!.split(',').to_set
+    s1_token = ingredients1.split(',')#.downcase!.try(:split,",")#.to_set#.split(',').to_set
+    s2_token = ingredients2.split(',')#.downcase!.try(:split,",")#.to_set#.split(',').to_set
     combined_vect = s1_token | s2_token
     
     for word in combined_vect do
@@ -125,14 +125,15 @@ class RecipesController < ApplicationController
     #This function finds the closest recipe in terms of ingredients to the current one
     #It iterates through our list of recipes and uses similar_recipes() to find the closest match
 
-    list_recipes = all_recipes #need to define all_recipes function that gets list of all recipes
+    list_recipes = Recipe.all #need to define all_recipes function that gets list of all recipes
     sim = 0
     highest = recipe
     for r in list_recipes do
-      if similar_recipes(recipe.Ingredients, r.Ingredients) > sim and recipe != r
-        sim = similar_recipes(recipe.Ingredients, r.Ingredients)
+      if similar_recipes(recipe.ingredients, r.ingredients) > sim and recipe != r
+        sim = similar_recipes(recipe.ingredients, r.ingredients)
         highest = r
       end
     end
     return highest
+  end
 end
