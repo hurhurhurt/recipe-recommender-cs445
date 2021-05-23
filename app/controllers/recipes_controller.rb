@@ -89,8 +89,8 @@ class RecipesController < ApplicationController
     tf_vector1 = Array.new()
     tf_vector2 = Array.new()
 
-    s1_token = ingredients1.split(',').to_set
-    s2_token = ingredients2.split(',').to_set
+    s1_token = ingredients1.downcase!.split(',').to_set
+    s2_token = ingredients2.downcase!.split(',').to_set
     combined_vect = s1_token | s2_token
 
     
@@ -113,4 +113,5 @@ class RecipesController < ApplicationController
         
     cosine = c / ((tf_vector1.sum * tf_vector2.sum)**0.5).to_f
   end    
+   
 end
