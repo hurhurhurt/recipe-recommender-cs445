@@ -5,7 +5,7 @@ Feature: Recipes Add, Edit, Delete
 
 Background: recipes in database
   Given the following recipes exist:
-  | recipe_name                         | ingredients                                                                                                                         | cuisine_type | calories | cooking_time |
+  | recipe_name                         | ingredients                                                                                                                         | food_type | calories | cooking_time |
   | Chicken Katsu                       | Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper                                                                   | Japanese     | 297      | 20           |
   | Mongolian Chicken                   | Chicken Breast, Cornstarch, Vegetable Oil, Garlic, Ginger, Sriracha, Sesame Oil, Rice Vinegar, Brown Sugar, Soy Sauce, Green Onions | Chinese      | 327      | 30           |
   | Tiramisu Toffee Dessert             | Pound Cake, Coffee, Cream Cheese, Sugar, Chocolate Syrup, Whipping Cream, English Toffee                                            | Japanese     | 434      | 80           |
@@ -31,21 +31,21 @@ Scenario: add recipe
   Given I am on the New Recipe Page
   And I fill in "Name" with "Test"
   And I fill in "Ingredients" with "Test"
-  And I select "Thai" from "Cuisine Type"
+  And I select "Thai" from "food Type"
   And I fill in "Calories" with "Test"
   And I fill in "Cooking Time" with "Test"
   And  I press "Save Changes"
-  Then the cuisine of "Test" should be "Thai"
+  Then the food of "Test" should be "Thai"
 
 @omniauth_test5
-Scenario: change cuisine
+Scenario: change food
   When I go to the edit recipe page for "Chicken Katsu"
-  And  I select "Chinese" from "Cuisine Type"
+  And  I select "Chinese" from "food Type"
   And  I press "Update Recipe Info"
-  Then the cuisine of "Chicken Katsu" should be "Chinese"
+  Then the food of "Chicken Katsu" should be "Chinese"
   
 @omniauth_test5
-Scenario: delete cuisine
+Scenario: delete food
   Given I am on the show recipe page for "Chicken Katsu"
   And  I follow "Delete"
   And I go to the New Recipe Page
@@ -70,10 +70,10 @@ Scenario: Sorting by Cooking Time
   Then I should see "Easy Homemade Pad Thai" before "Chicken Katsu"
   
 @omniauth_test5
-Scenario: Selecting by Cuisine
+Scenario: Selecting by food
   Given I am on the Home Page
-  And I check the following cuisines: Japanese
-  And I uncheck the following cuisines: Chinese Thai
+  And I check the following foods: Japanese
+  And I uncheck the following foods: Chinese Thai
   When I press "Refresh"
   Then I should see "Japanese Restaurant Cucumber Salad"
   Then I should not see "Mongolian Chicken"

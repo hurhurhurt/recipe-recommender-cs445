@@ -17,11 +17,11 @@ class RecipesController < ApplicationController
     #determine_highlighting
     
     #@recipes = cccc
-    @all_cuisines = Recipe.all_cuisines
-    @selected_cuisines_hash = session[:cuisines] #params[:ratings] || select_all_hash
-    @selected_cuisines = selected_cuisines
+    @all_foods = Recipe.all_foods
+    @selected_foods_hash = session[:foods] #params[:ratings] || select_all_hash
+    @selected_foods = selected_foods
     @sorting = session[:sorting] #params[:sorting] || "id"
-    @recipes = Recipe.filter_and_sort(@selected_cuisines,@sorting)
+    @recipes = Recipe.filter_and_sort(@selected_foods,@sorting)
 
   end
 
@@ -58,26 +58,26 @@ class RecipesController < ApplicationController
   # Making "internal" methods private is not required, but is a common practice.
   # This helps make clear which methods respond to requests, and which ones do not.
   def recipe_params
-    params.require(:recipe).permit(:recipe_name, :ingredients, :calories, :cuisine_type, :cooking_time)
+    params.require(:recipe).permit(:recipe_name, :ingredients, :calories, :food_type, :cooking_time)
   end
 
-  def selected_cuisines
-    @selected_cuisines_hash.keys
+  def selected_foods
+    @selected_foods_hash.keys
   end
   
   def select_all_hash
-    Hash[ Recipe.all_cuisines.map { |cuisine_type| [ cuisine_type , "1" ] } ]
+    Hash[ Recipe.all_foods.map { |food_type| [ food_type , "1" ] } ]
   end
   
   def update_session_hash
-    session[:cuisines] = params[:cuisines] || session[:cuisines] || select_all_hash
+    session[:foods] = params[:foods] || session[:foods] || select_all_hash
     session[:sorting] = params[:sorting] || session[:sorting] || "id"
   end
   
   def render_redirect
-    return unless (session[:cuisines] and params[:cuisines].nil? ) or
+    return unless (session[:foods] and params[:foods].nil? ) or
                   (session[:sorting] and params[:sorting].nil? )
-    redirect_to recipes_path(:sorting => session[:sorting] , :cuisines => session[:cuisines]) and return 
+    redirect_to recipes_path(:sorting => session[:sorting] , :foods => session[:foods]) and return 
   end
   
 	def set_recipe
@@ -93,9 +93,8 @@ class RecipesController < ApplicationController
 
     tf_vector1 = Array.new()
     tf_vector2 = Array.new()
-
-    s1_token = ingredients1.split(',')#.downcase!.try(:split,",")#.to_set#.split(',').to_set
-    s2_token = ingredients2.split(',')#.downcase!.try(:split,",")#.to_set#.split(',').to_set
+    s1_token = ingredients1.downcase.split(',')#.downcase!.try(:split,",")#.to_set#.split(',').to_set
+    s2_token = ingredients2.downcase.split(',')#.downcase!.try(:split,",")#.to_set#.split(',').to_set
     combined_vect = s1_token | s2_token
     
     for word in combined_vect do

@@ -1,25 +1,25 @@
 %h2 All Recipes
 
-= form_tag recipes_path, method: :get, id: 'cuisines_form' do
+= form_tag recipes_path, method: :get, id: 'foods_form' do
   = hidden_field_tag "sorting", @sorting
   Include:
-  - @all_cuisines.each do |cuisine|
+  - @all_foods.each do |food|
     .form-check.form-check-inline
-      = label_tag "cuisines[#{cuisine}]", cuisine, class: 'form-check-label'
-      = check_box_tag "cuisines[#{cuisine}]", "1",  @selected_cuisines.include?(cuisine), class: 'form-check-input', :id=> "cuisines_#{cuisine}"
-  = submit_tag 'Refresh', id: 'cuisines_submit', class: 'btn btn-primary'
+      = label_tag "foods[#{food}]", food, class: 'form-check-label'
+      = check_box_tag "foods[#{food}]", "1",  @selected_foods.include?(food), class: 'form-check-input', :id=> "foods_#{food}"
+  = submit_tag 'Refresh', id: 'foods_submit', class: 'btn btn-primary'
 
 %table#recipes.table.table-striped.col-md-12
   %thead
     %tr
       %th 
-        =link_to "Recipe Name", recipes_path(sorting: :recipe_name, :cuisines=>@selected_cuisines_hash),id: :reicpes_header
+        =link_to "Recipe Name", recipes_path(sorting: :recipe_name, :foods=>@selected_foods_hash),id: :reicpes_header
       %th Ingredients
-      %th Cuisine Type
+      %th Food Type
       %th 
-        =link_to "Calories", recipes_path(sorting: :calories, :cuisines=>@selected_cuisines_hash),id: :calories_header
+        =link_to "Calories", recipes_path(sorting: :calories, :foods=>@selected_foods_hash),id: :calories_header
       %th 
-        =link_to "Cooking Time", recipes_path(sorting: :cooking_time, :cuisines=>@selected_cuisines_hash),id: :cooking_time_header
+        =link_to "Cooking Time", recipes_path(sorting: :cooking_time, :foods=>@selected_foods_hash),id: :cooking_time_header
   %tbody
     - @recipes.each do |recipe|
       %tr
@@ -28,7 +28,7 @@
         %td
           = recipe.ingredients
         %td
-          = recipe.cuisine_type
+          = recipe.food_type
         %td
           = recipe.calories
         %td

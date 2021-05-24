@@ -193,7 +193,7 @@ Then /^the "([^"]*)" field should have the error "([^"]*)"$/ do |field, error_me
   end
 end
 
-Then /^the cuisine of "([^"]*)" should be "([^"]*)"/ do |recipe_name, cuisine|
+Then /^the food of "([^"]*)" should be "([^"]*)"/ do |recipe_name, food|
 	if page.respond_to? :should
     page.should have_content(recipe_name)
   else
@@ -201,9 +201,9 @@ Then /^the cuisine of "([^"]*)" should be "([^"]*)"/ do |recipe_name, cuisine|
   end
 	
 	if page.respond_to? :should
-    page.should have_content(cuisine)
+    page.should have_content(food)
   else
-    assert page.has_content?(cuisine)
+    assert page.has_content?(food)
   end
 end
 

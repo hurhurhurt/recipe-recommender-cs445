@@ -5,14 +5,14 @@
 
 #As a user who wants to find food
 #So that I can search for food with various factors
-#I want to see what I can make with 'Food Title', 'Recipe Name', 'Cuisine Type', 'Calories', and 'Cooking Time'
+#I want to see what I can make with 'Food Title', 'Recipe Name', 'food Type', 'Calories', and 'Cooking Time'
 
 #Background: home page of Recipe Recommender
 
 #Given the following boxes and button exist:
 #[Food Title]
 #[Recipe Name]
-#[Cuisine Type]
+#[food Type]
 #[Calories]
 #[Cooking Time(min)]
 #[APPLY]
@@ -24,7 +24,7 @@
 #When I see the home page
 #Then I should see 'Food Title' in 'box 1'
 #And I should see 'Recipe Name' in 'box 2'
-#And I should see 'Cuisine Type' in 'box 3'
+#And I should see 'food Type' in 'box 3'
 #And I should see 'Calories' in 'box 4'
 #And I should see 'Cooking Time(min)' in 'box 5'
 #And I should see 'APLLY' in 'button'
@@ -34,7 +34,7 @@
 #Then I press "APPLY"
 #Then I should see "ERROR_not_string"
 
-#Scenario: type integer in Cuisine Type
+#Scenario: type integer in food Type
 #When I type '60' in 'box 3'
 #Then I press "APPLY"
 #Then I should see "ERROR_not_string"

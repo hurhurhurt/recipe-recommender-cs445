@@ -5,7 +5,7 @@ RSpec.describe Recipe, type: :model do
 		recipe = Recipe.new(recipe_name: "Chicken Katsu",
 												ingredients: "Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper", 
 												calories: "297", 
-												cuisine_type: "Japanese", 
+												food_type: "Japanese", 
 												cooking_time: "20")
 		expect(recipe).to be_valid
 	end
@@ -21,8 +21,8 @@ RSpec.describe Recipe, type: :model do
 		recipe = Recipe.new(calories: nil)
 		expect(recipe).to_not be_valid
 	end
-	it "is not valid without a cuisine type" do
-		recipe = Recipe.new(cuisine_type: nil)
+	it "is not valid without a food type" do
+		recipe = Recipe.new(food_type: nil)
 		expect(recipe).to_not be_valid
 	end
 	it "is not valid without a cooking time" do

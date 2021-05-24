@@ -4,7 +4,7 @@ class CreateRecipes < ActiveRecord::Migration
       t.string :recipe_name
 			t.string :ingredients
 			t.integer :calories
-			t.string :cuisine_type
+			t.string :food_type
 			t.integer :cooking_time
 
       t.timestamps null: false

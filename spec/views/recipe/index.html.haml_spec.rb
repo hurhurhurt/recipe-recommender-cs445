@@ -9,7 +9,7 @@ RSpec.describe "recipe/index.html.haml", type: :view do
 				let(:recipe) {Recipe.new(recipe_name: "Eggdrop Soup",
 																	ingredients: "Egg, Chicken Stock, Corn, Salt",
 																	calories: "100",
-																	cuisine_type: "Chinese",
+																	food_type: "Chinese",
 																	cooking_time: "30")}
 				it "adds a new recipe", :pending => true do
 					

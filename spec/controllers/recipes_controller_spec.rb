@@ -9,7 +9,7 @@ RSpec.describe RecipesController, type: :controller do
   end
 
   describe '#create' do
-    let(:recipe_params) { {recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', cuisine_type: 'Japanese', cooking_time: '20'} }
+    let(:recipe_params) { {recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', food_type: 'Japanese', cooking_time: '20'} }
     let(:recipe) { instance_double('Recipe', recipe_params)}
     it 'Creates a new recipe' do
       expect(Recipe).to receive(:create!).with(recipe_params).and_return(recipe)
@@ -28,15 +28,15 @@ RSpec.describe RecipesController, type: :controller do
   end
 
   describe '#index' do  #there would be quite a few tests here!
-    let(:cuisines) { %w(Japanese Chinese Thai) }
-    let(:recipe1) {instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', cuisine_type: 'Japanese', cooking_time: '20')}
-    let(:recipe2) {instance_double('Recipe', recipe_name: 'Mongolian Chicken', ingredients: 'Chicken Breast, Cornstarch, Vegetable Oil, Garlic, Ginger, Sriracha, Sesame Oil, Rice Vinegar, Brown Sugar, Soy Sauce, Green Onions', calories: '327', cuisine_type: 'Chinese', cooking_time: '30')}
-    let(:recipe3) {instance_double('Recipe', recipe_name: 'Shrimp Red Thai Curry', ingredients: 'Coconut Milk, Red Thai Curry Paste, Fish Sauce, Chili Pepper, Shrimp', calories: '442', cuisine_type: 'Thai', cooking_time: '40')}
+    let(:foods) { %w(Japanese Chinese Thai) }
+    let(:recipe1) {instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', food_type: 'Japanese', cooking_time: '20')}
+    let(:recipe2) {instance_double('Recipe', recipe_name: 'Mongolian Chicken', ingredients: 'Chicken Breast, Cornstarch, Vegetable Oil, Garlic, Ginger, Sriracha, Sesame Oil, Rice Vinegar, Brown Sugar, Soy Sauce, Green Onions', calories: '327', food_type: 'Chinese', cooking_time: '30')}
+    let(:recipe3) {instance_double('Recipe', recipe_name: 'Shrimp Red Thai Curry', ingredients: 'Coconut Milk, Red Thai Curry Paste, Fish Sauce, Chili Pepper, Shrimp', calories: '442', food_type: 'Thai', cooking_time: '40')}
     let(:recipes) { [recipe1, recipe2, recipe3] }
-		it 'Retrieves all the cuisine_types' do
-      allow(Recipe).to receive(:all_cuisines).and_return(cuisines)
+		it 'Retrieves all the food_types' do
+      allow(Recipe).to receive(:all_foods).and_return(foods)
       get :index
-			expect(assigns(:all_cuisines)).to eq(cuisines)
+			expect(assigns(:all_foods)).to eq(foods)
     end
 		
   end
@@ -50,7 +50,7 @@ RSpec.describe RecipesController, type: :controller do
 
   describe '#show' do
 		let(:id1)  {1}
-		let(:params) { {recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', cuisine_type: 'Japanese', cooking_time: '20'} }
+		let(:params) { {recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', food_type: 'Japanese', cooking_time: '20'} }
     let(:recipe) { instance_double('Recipe', params)}
 		it 'Retrieves the recipe' do
       expect(controller).to receive(:set_recipe).and_return(recipe)
@@ -70,7 +70,7 @@ RSpec.describe RecipesController, type: :controller do
 
   describe '#edit' do
 		let(:id1) {'1'}
-		let(:recipe) {instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', cuisine_type: 'Japanese', cooking_time: '20')}
+		let(:recipe) {instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', food_type: 'Japanese', cooking_time: '20')}
 		it 'Retrieves the recipe' do
       expect(controller).to receive(:set_recipe).and_return(recipe)
       get :edit, id: id1 
@@ -89,10 +89,10 @@ RSpec.describe RecipesController, type: :controller do
 
   describe '#update' do
     let(:id1) {'1'}
-    let(:params) { {recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', cuisine_type: 'Japanese', cooking_time: '20'} }
-    let(:params1) { {recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '350', cuisine_type: 'Japanese', cooking_time: '20'} }
-    let(:recipe) { instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', cuisine_type: 'Japanese', cooking_time: '20')}
-	  let(:updated){ instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '350', cuisine_type: 'Japanese', cooking_time: '20')}
+    let(:params) { {recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', food_type: 'Japanese', cooking_time: '20'} }
+    let(:params1) { {recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '350', food_type: 'Japanese', cooking_time: '20'} }
+    let(:recipe) { instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', food_type: 'Japanese', cooking_time: '20')}
+	  let(:updated){ instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '350', food_type: 'Japanese', cooking_time: '20')}
     it 'Retrieves the recipe' do
       expect(controller).to receive(:set_recipe).and_return(recipe)
       allow(recipe).to receive(:update_attributes!).with(params1).and_return(updated)
@@ -119,7 +119,7 @@ RSpec.describe RecipesController, type: :controller do
 
 	describe '#destroy' do
 			let(:id1) {'1'}
-	    let(:recipe) { instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', cuisine_type: 'Japanese', cooking_time: '20')}
+	    let(:recipe) { instance_double('Recipe', recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', food_type: 'Japanese', cooking_time: '20')}
 			it 'Retrieves the recipe' do
 				expect(controller).to receive(:set_recipe).and_return(recipe)
 				allow(recipe).to receive(:destroy)

@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20210503023609) do
     t.string   "recipe_name"
     t.string   "ingredients"
     t.integer  "calories"
-    t.string   "cuisine_type"
+    t.string   "food_type"
     t.integer  "cooking_time"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
