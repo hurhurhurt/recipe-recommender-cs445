@@ -128,7 +128,7 @@ class RecipesController < ApplicationController
     sim = 0
     highest = recipe
     for r in list_recipes do
-      if similar_recipes(recipe.ingredients, r.ingredients) > sim and recipe != r
+      if similar_recipes(recipe.ingredients, r.ingredients) > sim and recipe != r and recipe.food_type == r.food_type
         sim = similar_recipes(recipe.ingredients, r.ingredients)
         highest = r
       end
