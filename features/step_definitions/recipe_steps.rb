@@ -57,3 +57,4 @@ When /I (un)?check the following foods: (.*)/ do |uncheck, food_list|
   end
   #fail "Unimplemented"
 end
+
