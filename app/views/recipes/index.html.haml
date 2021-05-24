@@ -13,9 +13,10 @@
   %thead
     %tr
       %th 
-        =link_to "Recipe Name", recipes_path(sorting: :recipe_name, :foods=>@selected_foods_hash),id: :reicpes_header
+        =link_to "Recipe Name", recipes_path(sorting: :recipe_name, :foods=>@selected_foods_hash),id: :recipes_header
       %th Ingredients
-      %th Food Type
+      %th 
+        =link_to "Food_Type", recipes_path(sorting: :food_type, :foods=>@selected_foods_hash),id: :food_type_header
       %th 
         =link_to "Calories", recipes_path(sorting: :calories, :foods=>@selected_foods_hash),id: :calories_header
       %th 
