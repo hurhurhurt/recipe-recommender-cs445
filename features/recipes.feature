@@ -1,4 +1,4 @@
-Feature: Recipes Add, Edit, Delete
+Feature: Recipes Add, Edit, Delete, Show
   As a registered member
   So that I can use the Recipe Recommender System
   I want to add, edit, and delete recipes from the Recipe Recommender Website
@@ -37,6 +37,17 @@ Background: recipes in database
   
   Given I am logged into Recipe Recommender
   
+	
+@omniauth_test5
+Scenario: recipe index
+  Given I am on the Home Page
+  Then I should see all the recipes
+	
+@omniauth_test5
+Scenario: show recipe
+  Given I am on the show recipe page for "Chicken Katsu"
+  Then I should see "Chicken Katsu"
+
 @omniauth_test5
 Scenario: add recipe
   Given I am on the New Recipe Page

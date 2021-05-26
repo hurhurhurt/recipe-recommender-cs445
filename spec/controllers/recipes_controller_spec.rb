@@ -51,9 +51,9 @@ RSpec.describe RecipesController, type: :controller do
   describe '#show' do
 		let(:id1)  {1}
 		let(:params) { {recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: 297, food_type: 'Chicken', cooking_time: 20} }
-    let(:params1) { {recipe_name: 'Sesame Chicken', ingredients: 'Chicken Thighs, Egg, Cornstarch, Salt, Pepper, Oil, Sesame Oil, Soy Sauce, Rice Vinegar, Brown Sugar, Garlic, Ginger, Chicken Stock, Sesame Seeds', caloires: 309, food_type:'Chicken', cooking_time:35}}
+    let(:params1) { {recipe_name: 'Sesame Chicken', ingredients: 'Chicken Thighs, Egg, Cornstarch, Salt, Pepper, Oil, Sesame Oil, Soy Sauce, Rice Vinegar, Brown Sugar, Garlic, Ginger, Chicken Stock, Sesame Seeds', calories: 309, food_type:'Chicken', cooking_time:35}}
     let(:recipe) { instance_double('Recipe', params)}
-		let(:sim_recipe) { instance_double('Sim_Recipe', params1)}
+		let(:sim_recipe) { instance_double('Recipe', params1)}
     it 'Retrieves the recipe' do
       expect(controller).to receive(:set_recipe).and_return(recipe)
       get :show, id: id1
@@ -68,10 +68,11 @@ RSpec.describe RecipesController, type: :controller do
       get :show, id: id1
       expect(assigns(:recipe)).to eq(recipe)
     end
-    it 'get the simillar recipe' do
-      allow(controller).to receive(:find_closest_recipe).and_return(recipe)
+    it 'get the most similar recipe' do
+      allow(controller).to receive(:set_recipe).and_return(recipe)
+			allow(controller).to receive(:find_closest_recipe).and_return(sim_recipe)
       get :show, id: id1
-      expect(assigns(:sim_recipe)).to eq(recipe)
+      expect(assigns(:sim_recipe)).to eq(sim_recipe)
     end
   end
 
