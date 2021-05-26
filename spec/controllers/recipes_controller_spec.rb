@@ -70,9 +70,8 @@ RSpec.describe RecipesController, type: :controller do
     end
     it 'get the most similar recipe' do
       allow(controller).to receive(:set_recipe).and_return(recipe)
-			allow(controller).to receive(:find_closest_recipe).and_return(sim_recipe)
+			expect(controller).to receive(:find_closest_recipe).with(recipe).and_return(sim_recipe)
       get :show, id: id1
-      expect(assigns(:sim_recipe)).to eq(sim_recipe)
     end
   end
 
