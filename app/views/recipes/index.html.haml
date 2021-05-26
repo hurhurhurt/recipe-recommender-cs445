@@ -1,38 +1,39 @@
-%h2 All Recipes
+%body.background_color
+  %h2 All Recipes
 
-= form_tag recipes_path, method: :get, id: 'foods_form' do
-  = hidden_field_tag "sorting", @sorting
-  Include:
-  - @all_foods.each do |food|
-    .form-check.form-check-inline
-      = label_tag "foods[#{food}]", food, class: 'form-check-label'
-      = check_box_tag "foods[#{food}]", "1",  @selected_foods.include?(food), class: 'form-check-input', :id=> "foods_#{food}"
-  = submit_tag 'Refresh', id: 'foods_submit', class: 'btn btn-primary'
+  = form_tag recipes_path, method: :get, id: 'foods_form' do
+    = hidden_field_tag "sorting", @sorting
+    Include:
+    - @all_foods.each do |food|
+      .form-check.form-check-inline
+        = label_tag "foods[#{food}]", food, class: 'form-check-label'
+        = check_box_tag "foods[#{food}]", "1",  @selected_foods.include?(food), class: 'form-check-input', :id=> "foods_#{food}"
+    = submit_tag 'Refresh', id: 'foods_submit', class: 'btn btn-primary'
 
-%table#recipes.table.table-striped.col-md-12
-  %thead
-    %tr
-      %th 
-        =link_to "Recipe Name", recipes_path(sorting: :recipe_name, :foods=>@selected_foods_hash),id: :recipes_header
-      %th Ingredients
-      %th 
-        =link_to "Food_Type", recipes_path(sorting: :food_type, :foods=>@selected_foods_hash),id: :food_type_header
-      %th 
-        =link_to "Calories", recipes_path(sorting: :calories, :foods=>@selected_foods_hash),id: :calories_header
-      %th 
-        =link_to "Cooking Time", recipes_path(sorting: :cooking_time, :foods=>@selected_foods_hash),id: :cooking_time_header
-  %tbody
-    - @recipes.each do |recipe|
+  %table#recipes.table.table-striped.col-md-12
+    %thead
       %tr
-        %td
-          = link_to "#{recipe.recipe_name}", recipe_path(recipe)
-        %td
-          = recipe.ingredients
-        %td
-          = recipe.food_type
-        %td
-          = recipe.calories
-        %td
-          = recipe.cooking_time
+        %th 
+          =link_to "Recipe Name", recipes_path(sorting: :recipe_name, :foods=>@selected_foods_hash),id: :recipes_header, class: 'linkto_color'
+        %th Ingredients
+        %th 
+          =link_to "Food_Type", recipes_path(sorting: :food_type, :foods=>@selected_foods_hash),id: :food_type_header, class: 'linkto_color'
+        %th 
+          =link_to "Calories", recipes_path(sorting: :calories, :foods=>@selected_foods_hash),id: :calories_header, class: 'linkto_color'
+        %th 
+          =link_to "Cooking Time", recipes_path(sorting: :cooking_time, :foods=>@selected_foods_hash),id: :cooking_time_header, class: 'linkto_color'
+    %tbody
+      - @recipes.each do |recipe|
+        %tr
+          %td
+            = link_to "#{recipe.recipe_name}", recipe_path(recipe), class: 'linkto_color'
+          %td
+            = recipe.ingredients
+          %td
+            = recipe.food_type
+          %td
+            = recipe.calories
+          %td
+            = recipe.cooking_time
 
-= link_to 'Add new recipe', new_recipe_path, :class => 'btn btn-primary givedownmargin'
+  = link_to 'Add new recipe', new_recipe_path, :class => 'btn btn-primary givedownmargin'

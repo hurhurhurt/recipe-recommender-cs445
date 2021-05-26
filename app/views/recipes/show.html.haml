@@ -1,23 +1,24 @@
-%h1
-  %em= @recipe.recipe_name
-%ul#details
-  %li
-    Food Type:
-    = @recipe.food_type
-  %li
-    Ingredients:
-    = @recipe.ingredients
-  %li
-    Calories:
-    = @recipe.calories
-  %li
-    Cooking Time:
-    = @recipe.cooking_time
-  %li
-    Recipe that has similar ingredients:
-    = link_to @close_recipe.recipe_name , recipe_path(@close_recipe)
-	
-.row
-  = link_to 'Edit', edit_recipe_path(@recipe), :class => 'btn btn-primary col-2 givemargin givedownmargin'
-  = link_to 'Delete', recipe_path(@recipe), 'data-method' => 'delete', 'data-confirm' => 'Are you sure?', :class => 'btn btn-danger col-2 givedownmargin'
-  = link_to 'Back to recipes list', recipes_path, :class => 'btn btn-primary col-2 givemargin givedownmargin'
+%body.background_color
+  %h1
+    %em= @recipe.recipe_name
+  %ul#details
+    %li
+      Food Type:
+      = @recipe.food_type
+    %li
+      Ingredients:
+      = @recipe.ingredients
+    %li
+      Calories:
+      = @recipe.calories
+    %li
+      Cooking Time:
+      = @recipe.cooking_time
+    %li
+      Recipe that has similar ingredients:
+      = link_to @close_recipe.recipe_name , recipe_path(@close_recipe),class: 'linkto_color'
+
+  .row
+    = link_to 'Edit', edit_recipe_path(@recipe), :class => 'btn btn-primary col-2 givemargin givedownmargin'
+    = link_to 'Delete', recipe_path(@recipe), 'data-method' => 'delete', 'data-confirm' => 'Are you sure?', :class => 'btn btn-danger col-2 givedownmargin'
+    = link_to 'Back to recipes list', recipes_path, :class => 'btn btn-primary col-2 givemargin givedownmargin'

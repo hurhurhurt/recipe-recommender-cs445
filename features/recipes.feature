@@ -94,5 +94,6 @@ Scenario: Selecting by food
 Scenario: Similarity
   When I go to the show recipe page for "Asian Easy Cucumber Salad"
   Then I should see "Recipe that has similar ingredients: Japanese Restaurant Cucumber Salad"
-  
+  And I follow "Japanese Restaurant Cucumber Salad"
+  Then I should see "Japanese Restaurant Cucumber Salad"
   
