@@ -9,8 +9,7 @@ Scenario: Register
   Given I am on the landing page
   And I press "Register or Login with GitHub"
   Then I will see "Welcome Tester SUNY! You have signed up via github."
-  #Then I am on the Edit Profile Page
-  And I will see "Editing profile" 
+  And I will see "All Recipes" 
   
 @omniauth_test2
 Scenario:  Can't Register without SUNY ID

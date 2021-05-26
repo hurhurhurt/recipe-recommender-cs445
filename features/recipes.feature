@@ -92,7 +92,7 @@ Scenario: Selecting by food
   
 @omniauth_test5
 Scenario: Similarity
-  Given I am on the show recipe page for "Chicken Katsu"
-  Then I should see "Recipe that has similar ingredients: Sesame Chicken"
+  When I go to the show recipe page for "Asian Easy Cucumber Salad"
+  Then I should see "Recipe that has similar ingredients: Japanese Restaurant Cucumber Salad"
   
   

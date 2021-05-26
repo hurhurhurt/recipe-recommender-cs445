@@ -22,7 +22,7 @@ module NavigationHelpers
       edit_recipe_path(1, 2)
      
     when /^the show recipe page for "([^"]*)"$/
-      recipe_path(1)
+      recipe_path(Recipe.find_by_recipe_name($1))
       
     when /^the New Recipe Page$/
       new_recipe_path
