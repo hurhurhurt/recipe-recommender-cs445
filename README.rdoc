@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ITERATION 5 [FINAL]
+=======
+ITERATION 5
+>>>>>>> iteration5
 == Changes
 1. Added Similar Recipe Feature to each Recipe
 
@@ -14,7 +18,11 @@ How to run:
 
 3. rake db:migrate
 
+<<<<<<< HEAD
 4. rails s -b 0.0.0.0
+=======
+4. rails s -b 0.0.0
+>>>>>>> iteration5
 
 5. Login as usual!
 

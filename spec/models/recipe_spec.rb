@@ -5,7 +5,7 @@ RSpec.describe Recipe, type: :model do
 		recipe = Recipe.new(recipe_name: "Chicken Katsu",
 												ingredients: "Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper", 
 												calories: "297", 
-												food_type: "Japanese", 
+												food_type: "Chicken", 
 												cooking_time: "20")
 		expect(recipe).to be_valid
 	end

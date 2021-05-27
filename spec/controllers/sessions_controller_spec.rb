@@ -40,13 +40,19 @@ RSpec.describe SessionsController, type: :controller do
             expect(assigns(:profile)).to have_attributes(id: id2, user_id: 1)
           end
           # Finally, we should test where it's going
+<<<<<<< HEAD
   
+=======
+          #it 'redirects to the edit profile page' do
+          #  post :create, provider: :github  
+          #  expect(response).to redirect_to(edit_user_profile_path(user_id: 1, id: id2))       
+          #end
+>>>>>>> iteration5
 
           it 'checks to see that a previous authorization does not exist' do
             expect(Authorization).to receive(:exists?).with(OmniAuth.config.mock_auth[:github]).and_return(false)
             post :create, provider: :github
           end  
-
         end
       end
     end
