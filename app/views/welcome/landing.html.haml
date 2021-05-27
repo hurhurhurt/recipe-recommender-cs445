@@ -8,9 +8,7 @@
       -#%passfield
         -#=password_field_tag 'PASS', nil ,placeholder: 'PASS', :class => 'form-control col-lg-2 tomiddle offset-5'
   %br
-    %login_register_field
-      =submit_tag 'LOGIN', :class => 'btn btn-primary givemargin'
-      =submit_tag 'REGISTER', :class => 'btn btn-primary givemargin'
+    = button_to "Register or Login with GitHub", '/auth/github'
   %br
     %about_us_field
       %p.about_title ABOUT US..

@@ -8,5 +8,4 @@ Feature: Landing page of Recipe Recommender
 Scenario: User sees the welcome message
   When I go to the landing page
   Then I should see "ABOUT US.."
-  
 

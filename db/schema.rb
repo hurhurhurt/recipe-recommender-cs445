@@ -11,10 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210411004148) do
+ActiveRecord::Schema.define(version: 20210503023609) do
+
+  create_table "authorizations", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id"
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "primary_language"
+    t.string   "secondary_language"
+    t.string   "favorite_movie"
+    t.string   "worst_movie"
+    t.string   "favorite_genre"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
 
   create_table "recipes", force: :cascade do |t|
-    t.string   "index"
+    t.string   "recipe_name"
+    t.string   "ingredients"
+    t.integer  "calories"
+    t.string   "cuisine_type"
+    t.integer  "cooking_time"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
