@@ -1,5 +1,4 @@
 require 'set'
-require 'string/similarity'
 class RecipesController < ApplicationController
    
   def show

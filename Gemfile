@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 
 ruby '2.6.6'
-gem 'string-similarity'
-gem 'doorkeeper'
 # Other gems here . . .
 #Use Haml as the templating library
 gem 'haml'
@@ -60,7 +58,7 @@ end
 
 # for Heroku deployment 
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 0.21'
   gem 'rails_12factor'
 end
 
