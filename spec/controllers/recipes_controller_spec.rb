@@ -50,9 +50,11 @@ RSpec.describe RecipesController, type: :controller do
 
   describe '#show' do
 		let(:id1)  {1}
-		let(:params) { {recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: '297', food_type: 'Japanese', cooking_time: '20'} }
+		let(:params) { {recipe_name: 'Chicken Katsu', ingredients: 'Chicken Breast, Flour, Egg, Panko Bread Crumbs, Oil, Salt, Pepper', calories: 297, food_type: 'Chicken', cooking_time: 20} }
+    let(:params1) { {recipe_name: 'Sesame Chicken', ingredients: 'Chicken Thighs, Egg, Cornstarch, Salt, Pepper, Oil, Sesame Oil, Soy Sauce, Rice Vinegar, Brown Sugar, Garlic, Ginger, Chicken Stock, Sesame Seeds', calories: 309, food_type:'Chicken', cooking_time:35}}
     let(:recipe) { instance_double('Recipe', params)}
-		it 'Retrieves the recipe' do
+		let(:sim_recipe) { instance_double('Recipe', params1)}
+    it 'Retrieves the recipe' do
       expect(controller).to receive(:set_recipe).and_return(recipe)
       get :show, id: id1
     end
@@ -65,6 +67,11 @@ RSpec.describe RecipesController, type: :controller do
       allow(controller).to receive(:set_recipe).and_return(recipe)
       get :show, id: id1
       expect(assigns(:recipe)).to eq(recipe)
+    end
+    it 'get the most similar recipe' do
+      allow(controller).to receive(:set_recipe).and_return(recipe)
+			expect(controller).to receive(:find_closest_recipe).with(recipe).and_return(sim_recipe)
+      get :show, id: id1
     end
   end
 
@@ -79,11 +86,6 @@ RSpec.describe RecipesController, type: :controller do
       allow(controller).to receive(:set_recipe).and_return(recipe)
       get :edit, id: id1 
       expect(response).to render_template('edit') 
-    end
-    it 'makes the recipe available to the template' do
-      allow(controller).to receive(:set_recipe).and_return(recipe)
-      get :edit, id: id1 
-      expect(assigns(:recipe)).to eq(recipe)
     end
   end
 

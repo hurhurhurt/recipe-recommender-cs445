@@ -31,6 +31,10 @@ Then /^I will see "([^"]*)"$/ do |message|
   expect(page.body).to have_content(message)
 end
 
+Then /I should see all the recipes/ do 
+	expect(page).to have_xpath("//tr", count: 21)
+end
+
 Given /I am logged into Recipe Recommender/ do
   steps %Q{
     Given I am on the landing page   
