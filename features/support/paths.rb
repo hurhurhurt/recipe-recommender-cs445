@@ -12,9 +12,24 @@ module NavigationHelpers
   #
   def path_to(page_name)
     case page_name
-
     when /^the landing\s?page$/
-      #then '/landing'
+      landing_page_path
+    
+    when /^the Recipe Recommender edit Profile Path for "([^"]*)"$/
+      edit_user_profile_path(1, 2)
+      
+    when /^the edit recipe page for "([^"]*)"$/
+      edit_recipe_path(1, 2)
+     
+    when /^the show recipe page for "([^"]*)"$/
+      recipe_path(1)
+      
+    when /^the New Recipe Page$/
+      new_recipe_path
+
+    when /^the Home Page$/
+      recipes_path
+      
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
@@ -34,5 +49,4 @@ module NavigationHelpers
     end
   end
 end
-
 World(NavigationHelpers)

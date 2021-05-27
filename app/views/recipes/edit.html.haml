@@ -1,0 +1,15 @@
+%h2 Edit Recipe
+= form_tag recipe_path(@recipe), :method => :put do
+  = label :recipe, :recipe_name, 'Name', :class => 'col-form-label'
+  = text_field :recipe, :recipe_name, :class => 'form-control'
+  = label :recipe, :ingredients, 'Ingredients', :class => 'col-form-label'
+  = text_field :recipe, :ingredients, :class => 'form-control'
+  = label :recipe, :cuisine_type, 'Cuisine Type', :class => 'col-form-label'
+  = select :recipe, :cuisine_type, ['Japanese','Chinese', 'Thai'], {}, {:class => 'form-control col-1'}
+  = label :recipe, :calories, 'Calories', :class => 'col-form-label'
+  = text_field :recipe, :calories, :class => 'form-control'
+  = label :recipe, :cooking_time, 'Cooking Time', :class => 'col-form-label'
+  = text_field :recipe, :cooking_time, :class => 'form-control'
+  %br/
+  = submit_tag 'Update Recipe Info', :class => 'btn btn-primary givemargin'
+  = link_to 'Cancel', recipes_path, :class => 'btn btn-secondary givemargin'

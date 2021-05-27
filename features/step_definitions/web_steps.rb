@@ -193,6 +193,20 @@ Then /^the "([^"]*)" field should have the error "([^"]*)"$/ do |field, error_me
   end
 end
 
+Then /^the cuisine of "([^"]*)" should be "([^"]*)"/ do |recipe_name, cuisine|
+	if page.respond_to? :should
+    page.should have_content(recipe_name)
+  else
+    assert page.has_content?(recipe_name)
+  end
+	
+	if page.respond_to? :should
+    page.should have_content(cuisine)
+  else
+    assert page.has_content?(cuisine)
+  end
+end
+
 Then /^the "([^"]*)" field should have no error$/ do |field|
   element = find_field(field)
   classes = element.find(:xpath, '..')[:class].split(' ')
@@ -252,3 +266,4 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
