@@ -1,29 +1,24 @@
-# Iteration1
-== README
+ITERATION 5
+== Changes
+1. Added Similar Recipe Feature to each Recipe
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+== Running the Code
 
-Things you may want to cover:
+Ruby Version: 2.6.6
 
-* Ruby version
+How to run: 
 
-* System dependencies
+1. git clone https://github.com/hurhurhurt/recipe-recommender-cs445
 
-* Configuration
+2. bundle install
 
-* Database creation
+3. rake db:migrate
 
-* Database initialization
+4. rails s -b 0.0.0
 
-* How to run the test suite
+5. Login as usual!
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+==Project Description:
+We will be building a fully-fledged Recipe Recommendation System that based on specific constraints, like ingredients, calorie restrictions, and cuisine type will output a list of recipes. Users can also click on recipes that they enjoyed making in order to find similar recipes to that specific one. We plan to use Python to build a recipe scraper to get recipes from allrecipes.com and Ruby on Rails, Javascript, HTML, and CSS to deploy the front end of the application. We hope that this project can help anyone who cooks often a simple solution to the perennial question of “What should I cook for dinner tonight?”
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
